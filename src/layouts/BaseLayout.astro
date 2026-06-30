@@ -1,0 +1,86 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#c96538" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg-top: #efe1cf;
+    --bg-bottom: #f4efe8;
+    --surface: rgba(255, 250, 244, 0.82);
+    --surface-strong: #fffaf4;
+    --ink: #2d2218;
+    --muted: #705b49;
+    --accent: #c96538;
+    --accent-deep: #8c3822;
+    --line: rgba(93, 63, 44, 0.12);
+    --shadow: 0 30px 80px rgba(67, 42, 24, 0.12);
+    --radius-xl: 34px;
+    --radius-lg: 24px;
+    --radius-md: 18px;
+    --content-width: min(1180px, calc(100vw - 32px));
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+    background:
+      radial-gradient(circle at left top, rgba(255, 210, 149, 0.95), transparent 28%),
+      radial-gradient(circle at right top, rgba(180, 219, 255, 0.78), transparent 24%),
+      linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(96, 76, 57, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(96, 76, 57, 0.03) 1px, transparent 1px);
+    background-size: 18px 18px;
+    opacity: 0.5;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+  }
+  </style>

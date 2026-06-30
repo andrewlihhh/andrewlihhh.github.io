@@ -1,0 +1,518 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "哈尔滨旅拍手册";
+const description =
+  "用 Astro 制作的哈尔滨一日旅行静态网站，包含圣索菲亚教堂、中央大街、松花江江畔和完整 8 张图片素材。";
+
+const gallery = [
+  {
+    image: "/images/harbin-01.jpg",
+    alt: "松花江边傍晚的人像照片",
+    title: "图 1",
+    note: "松花江畔的第一眼，适合用来定下这趟路线的日落基调。"
+  },
+  {
+    image: "/images/harbin-02.jpg",
+    alt: "张杨街创意门牌的近景照片",
+    title: "图 2",
+    note: "张杨街创意街区门牌，复古文字和金色镜框很有哈尔滨街头感。"
+  },
+  {
+    image: "/images/harbin-03.jpg",
+    alt: "松花江边张开双臂拍摄的日落照片",
+    title: "图 3",
+    note: "同一段江岸的另一种拍法，适合放在黄昏时段的人像参考里。"
+  },
+  {
+    image: "/images/harbin-04.jpg",
+    alt: "圣索菲亚教堂室内穹顶与钢琴照片",
+    title: "图 4",
+    note: "索菲亚教堂内部暖调光影，和浅色穿搭的匹配度很高。"
+  },
+  {
+    image: "/images/harbin-05.jpg",
+    alt: "圣索菲亚教堂外立面照片",
+    title: "图 5",
+    note: "教堂外立面是地标机位，适合放在路线开场。"
+  },
+  {
+    image: "/images/harbin-06.jpg",
+    alt: "松花江、防洪纪念塔和中央大街夜景拼图",
+    title: "图 6",
+    note: "把江景、彩桥、防洪纪念塔和中央大街夜色放在一张图里，适合做整条路线的收束。"
+  },
+  {
+    image: "/images/harbin-07.jpg",
+    alt: "中央大街可口可乐橱窗前的人像照片",
+    title: "图 7",
+    note: "中央大街的经典橱窗机位，雨天和夜里都很出片。"
+  },
+  {
+    image: "/images/harbin-08.jpg",
+    alt: "面包石历史展厅展板前的照片",
+    title: "图 8",
+    note: "面包石历史展厅很适合作为街区故事感的补充。"
+  }
+];
+
+const stops = [
+  {
+    time: "09:00-11:00",
+    title: "圣索菲亚教堂",
+    summary: "先拍外立面，再进展厅。上午人少，建筑线条和暖色穹顶都更完整。",
+    bullets: [
+      "浅色穿搭和室内暖调光线很搭。",
+      "外景可先从侧方街道找更干净的取景线。",
+      "推荐对应图片：图 4、图 5。"
+    ]
+  },
+  {
+    time: "11:30-17:00",
+    title: "中央大街片区",
+    summary: "把午饭、逛街和拍街景放在这一段，走路松弛，也最适合放慢节奏。",
+    bullets: [
+      "先看面包石历史展厅，再沿街拍橱窗和复古洋楼。",
+      "张杨街创意街区和可口可乐橱窗都很适合做人像点位。",
+      "推荐对应图片：图 2、图 7、图 8。"
+    ]
+  },
+  {
+    time: "17:30-20:00",
+    title: "松花江边与防洪纪念塔",
+    summary: "把最后的时间留给日落、蓝调和夜景，江边风一起来，整条路线的气氛就完整了。",
+    bullets: [
+      "日落前半小时到位，江水一侧更容易拿到柔和逆光。",
+      "夜景可以把纪念塔、江面倒影和彩桥一起收进画面。",
+      "推荐对应图片：图 1、图 3、图 6。"
+    ]
+  }
+];
+
+const highlights = [
+  "图文专页，不再是博客归档",
+  "8 张图片全部已接入页面",
+  "Astro 静态站，适合 Cloudflare Pages 自动构建",
+  "后续继续加别的城市，也能沿用同一套结构"
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="page-shell">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Harbin Photo Guide</p>
+        <h1>把这次哈尔滨旅行<br />做成一个专用网页</h1>
+        <p class="lead">
+          这不是博客首页，而是一份围绕你这次旅行内容重组的图文页面。路线从圣索菲亚教堂出发，经过中央大街，最后在松花江和防洪纪念塔收尾，8 张图片都按顺序放进来了。
+        </p>
+
+        <div class="hero-actions">
+          <a href="#gallery">看完整相册</a>
+          <a href="#route">看路线安排</a>
+        </div>
+
+        <div class="highlight-list">
+          {highlights.map((item) => <span>{item}</span>)}
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <p class="panel-label">一日顺路版</p>
+        <ol>
+          <li>
+            <strong>上午</strong>
+            <span>圣索菲亚教堂，先外后内。</span>
+          </li>
+          <li>
+            <strong>中午到下午</strong>
+            <span>中央大街、张杨街、面包石展厅。</span>
+          </li>
+          <li>
+            <strong>傍晚到夜间</strong>
+            <span>松花江畔、防洪纪念塔、彩桥夜景。</span>
+          </li>
+        </ol>
+      </aside>
+    </section>
+
+    <section class="section section-intro">
+      <div class="section-heading">
+        <p>页面定位</p>
+        <h2>一个适合持续更新的旅行相册页</h2>
+      </div>
+      <div class="intro-grid">
+        <article>
+          <h3>为什么适合你的使用方式</h3>
+          <p>
+            你现在的需求不是“个人博客”，而是一个能直接承载图文内容的专页。Astro 很适合这个方向：静态、快、结构清楚，后面加新城市时也不用把首页重新设计一遍。
+          </p>
+        </article>
+        <article>
+          <h3>已经接好的内容</h3>
+          <p>
+            现有哈尔滨攻略文案已经拆成路线、点位和图片说明；素材目录里的 8 张图也已经按图 1 到图 8 的顺序接入页面。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="section-heading">
+        <p>图 1 - 图 8</p>
+        <h2>完整相册</h2>
+      </div>
+
+      <div class="gallery-grid">
+        {gallery.map((item, index) => (
+          <figure class:list={["gallery-card", index === 5 ? "gallery-card--tall" : ""]}>
+            <img src={item.image} alt={item.alt} loading="lazy" />
+            <figcaption>
+              <strong>{item.title}</strong>
+              <p>{item.note}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" id="route">
+      <div class="section-heading">
+        <p>按顺路走</p>
+        <h2>一日游览时间线</h2>
+      </div>
+
+      <div class="timeline">
+        {stops.map((stop) => (
+          <article class="timeline-item">
+            <div class="timeline-time">{stop.time}</div>
+            <div class="timeline-content">
+              <h3>{stop.title}</h3>
+              <p>{stop.summary}</p>
+              <ul>
+                {stop.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section-notes">
+      <div class="section-heading">
+        <p>点位说明</p>
+        <h2>三段内容，刚好把这次行程讲完整</h2>
+      </div>
+
+      <div class="notes-grid">
+        <article class="note-card">
+          <h3>圣索菲亚教堂</h3>
+          <p>
+            这是路线里最适合作为开头的点。建筑辨识度高，进展厅前后都能拍到不同的氛围层次，既适合当“到此一游”的地标，也适合做更安静的室内照片。
+          </p>
+        </article>
+
+        <article class="note-card">
+          <h3>中央大街</h3>
+          <p>
+            中央大街不是只拍大街本身，真正出彩的是散落在街区里的小机位：张杨街的门牌、可口可乐橱窗、面包石展厅，这些细节会让整页内容更像一份亲身走过的攻略。
+          </p>
+        </article>
+
+        <article class="note-card">
+          <h3>松花江与防洪纪念塔</h3>
+          <p>
+            收尾一定要给江边和夜色。前面的建筑和街景负责建立城市印象，最后的江面、彩桥和纪念塔负责把情绪拉满，这样整页内容从视觉上也更完整。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Built with Astro for `andrewlihhh.github.io` and ready for Cloudflare Pages auto deploy.</p>
+      <a href="#top">回到顶部</a>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-shell {
+    width: var(--content-width);
+    margin: 0 auto;
+    padding: 24px 0 56px;
+  }
+
+  .hero,
+  .section {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+    gap: 22px;
+    padding: 32px;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    right: -80px;
+    top: -80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 101, 56, 0.22), transparent 72%);
+  }
+
+  .eyebrow,
+  .section-heading p,
+  .panel-label {
+    margin: 0;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  .hero h1 {
+    margin: 14px 0 16px;
+    font-size: clamp(2.4rem, 5vw, 4.8rem);
+    line-height: 1.03;
+  }
+
+  .lead,
+  .intro-grid p,
+  .timeline-content p,
+  .note-card p,
+  figcaption p {
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  .hero-actions,
+  .highlight-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero-actions {
+    margin: 24px 0 18px;
+  }
+
+  .hero-actions a,
+  .footer a {
+    text-decoration: none;
+  }
+
+  .hero-actions a {
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.72);
+    transition: transform 160ms ease, background 160ms ease;
+  }
+
+  .hero-actions a:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  .highlight-list span {
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(201, 101, 56, 0.09);
+    color: var(--accent-deep);
+    font-size: 0.95rem;
+  }
+
+  .hero-panel {
+    position: relative;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, rgba(255, 247, 236, 0.9), rgba(255, 255, 255, 0.72));
+    border: 1px solid var(--line);
+    z-index: 1;
+  }
+
+  .hero-panel ol {
+    margin: 18px 0 0;
+    padding-left: 20px;
+  }
+
+  .hero-panel li + li {
+    margin-top: 16px;
+  }
+
+  .hero-panel strong {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .hero-panel span {
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .section {
+    margin-top: 26px;
+    padding: 28px;
+  }
+
+  .section-heading {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    margin-bottom: 0;
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+  }
+
+  .intro-grid,
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .notes-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .intro-grid article,
+  .note-card {
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.56);
+    border: 1px solid var(--line);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .gallery-card {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid var(--line);
+  }
+
+  .gallery-card img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    object-position: center;
+    background: #e7ddd0;
+  }
+
+  .gallery-card--tall img {
+    height: 720px;
+  }
+
+  figcaption {
+    padding: 18px;
+  }
+
+  figcaption strong {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 1.02rem;
+  }
+
+  .timeline {
+    display: grid;
+    gap: 16px;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .timeline-item:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .timeline-time {
+    color: var(--accent-deep);
+    font-size: 0.95rem;
+  }
+
+  .timeline-content ul {
+    margin: 12px 0 0;
+    padding-left: 20px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 8px 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  @media (max-width: 980px) {
+    .hero,
+    .intro-grid,
+    .notes-grid,
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .page-shell {
+      width: min(100vw - 20px, 1180px);
+      padding-top: 12px;
+    }
+
+    .hero,
+    .section {
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.45rem;
+    }
+
+    .timeline-item {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .gallery-card img,
+    .gallery-card--tall img {
+      height: auto;
+    }
+
+    .footer {
+      flex-direction: column;
+    }
+  }
+</style>
