@@ -1,99 +1,180 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = "哈尔滨旅拍手册";
+const title = "专属哈尔滨旅游攻略";
 const description =
-  "用 Astro 制作的哈尔滨一日旅行静态网站，包含圣索菲亚教堂、中央大街、松花江江畔和完整 8 张图片素材。";
+  "一份适合第一次到哈尔滨慢慢逛、认真拍照的一日旅游攻略，覆盖圣索菲亚教堂、中央大街和松花江日落夜景。";
 
 const gallery = [
   {
     image: "/images/harbin-01.jpg",
     alt: "松花江边傍晚的人像照片",
     title: "图 1",
-    note: "松花江畔的第一眼，适合用来定下这趟路线的日落基调。"
+    note: "松花江边的傍晚氛围最适合留给这趟行程的最后一站。"
   },
   {
     image: "/images/harbin-02.jpg",
     alt: "张杨街创意门牌的近景照片",
     title: "图 2",
-    note: "张杨街创意街区门牌，复古文字和金色镜框很有哈尔滨街头感。"
+    note: "张杨街创意门牌很适合拍出哈尔滨街头那种旧旧的文艺感。"
   },
   {
     image: "/images/harbin-03.jpg",
     alt: "松花江边张开双臂拍摄的日落照片",
     title: "图 3",
-    note: "同一段江岸的另一种拍法，适合放在黄昏时段的人像参考里。"
+    note: "同一段江岸换一个动作和角度，就能拍出更有情绪的人像。"
   },
   {
     image: "/images/harbin-04.jpg",
     alt: "圣索菲亚教堂室内穹顶与钢琴照片",
     title: "图 4",
-    note: "索菲亚教堂内部暖调光影，和浅色穿搭的匹配度很高。"
+    note: "索菲亚教堂内部暖调穹顶和钢琴，是复古氛围感的核心机位。"
   },
   {
     image: "/images/harbin-05.jpg",
     alt: "圣索菲亚教堂外立面照片",
     title: "图 5",
-    note: "教堂外立面是地标机位，适合放在路线开场。"
+    note: "教堂外景是哈尔滨最经典也最值得保留的一张城市名片。"
   },
   {
     image: "/images/harbin-06.jpg",
     alt: "松花江、防洪纪念塔和中央大街夜景拼图",
     title: "图 6",
-    note: "把江景、彩桥、防洪纪念塔和中央大街夜色放在一张图里，适合做整条路线的收束。"
+    note: "江景、塔和街区夜色集中在一张图里，很适合当作整日收尾。"
   },
   {
     image: "/images/harbin-07.jpg",
     alt: "中央大街可口可乐橱窗前的人像照片",
     title: "图 7",
-    note: "中央大街的经典橱窗机位，雨天和夜里都很出片。"
+    note: "中央大街的复古橱窗是夜拍非常稳的一站。"
   },
   {
     image: "/images/harbin-08.jpg",
     alt: "面包石历史展厅展板前的照片",
     title: "图 8",
-    note: "面包石历史展厅很适合作为街区故事感的补充。"
+    note: "面包石历史展厅虽然不大，但很适合补足街区故事感。"
   }
 ];
 
-const stops = [
+const routeSpots = [
   {
+    id: "sofia",
+    order: "01",
     time: "09:00-11:00",
+    area: "上午开场",
     title: "圣索菲亚教堂",
-    summary: "先拍外立面，再进展厅。上午人少，建筑线条和暖色穹顶都更完整。",
-    bullets: [
-      "浅色穿搭和室内暖调光线很搭。",
-      "外景可先从侧方街道找更干净的取景线。",
-      "推荐对应图片：图 4、图 5。"
+    summary:
+      "这站适合放在一日行程的开头。上午光线柔和，人流相对少，先拍外景，再慢慢进入展厅，整个人会很快进入哈尔滨这座城市的节奏。",
+    history: [
+      "索菲亚教堂是哈尔滨辨识度最高的城市地标之一，俄式风貌和穹顶轮廓很有记忆点。",
+      "外立面适合拍建筑大片，内部展厅则更偏向安静、复古和氛围感。"
+    ],
+    food: [
+      "从这里出发去中央大街很顺，可以把午饭留给后面的俄式西餐或锅包肉老店。",
+      "如果想轻量补给，沿路买一根马迭尔冰棍会很方便。"
+    ],
+    photoSpots: [
+      "教堂外景建议从侧方街道找更干净的构图，不一定非要在正门广场挤人群。",
+      "室内更适合浅色穿搭，暖光和穹顶会把人物氛围拉得很柔和。"
+    ],
+    photos: [
+      {
+        image: "/images/harbin-05.jpg",
+        alt: "圣索菲亚教堂外景照片",
+        caption: "外立面适合做行程开场。"
+      },
+      {
+        image: "/images/harbin-04.jpg",
+        alt: "圣索菲亚教堂室内照片",
+        caption: "内部暖光和钢琴很适合拍复古氛围照。"
+      }
     ]
   },
   {
+    id: "central",
+    order: "02",
     time: "11:30-17:00",
+    area: "午后慢逛",
     title: "中央大街片区",
-    summary: "把午饭、逛街和拍街景放在这一段，走路松弛，也最适合放慢节奏。",
-    bullets: [
-      "先看面包石历史展厅，再沿街拍橱窗和复古洋楼。",
-      "张杨街创意街区和可口可乐橱窗都很适合做人像点位。",
-      "推荐对应图片：图 2、图 7、图 8。"
+    summary:
+      "这是整条路线里最适合放慢脚步的一段。吃饭、散步、拍街景都在这一区域完成，不赶路的时候，反而更能拍到哈尔滨最舒服的样子。",
+    history: [
+      "中央大街最有意思的不只是欧式建筑本身，还有面包石路、老橱窗和沿街的小细节。",
+      "张杨街一带的创意门牌、文创巷口和展板，都很适合拍出带故事感的街头照片。"
+    ],
+    food: [
+      "午饭推荐留在这一区域，俄式西餐、锅包肉和红肠都比较顺路。",
+      "边走边吃马迭尔冰棍，会让这段街区体验更有哈尔滨味道。"
+    ],
+    photoSpots: [
+      "张杨街创意门牌很适合拍半身和细节照，雨天会更有复古氛围。",
+      "可口可乐橱窗适合晚上拍人像，灯光、色彩和玻璃反光都很出片。",
+      "面包石历史展厅停留时间不用太久，但非常适合补一张“到这里走过”的纪实照。"
+    ],
+    photos: [
+      {
+        image: "/images/harbin-02.jpg",
+        alt: "张杨街创意门牌照片",
+        caption: "张杨街的门牌很适合拍文艺感街景。"
+      },
+      {
+        image: "/images/harbin-07.jpg",
+        alt: "中央大街可口可乐橱窗照片",
+        caption: "夜色和橱窗一起出现时，氛围会很完整。"
+      },
+      {
+        image: "/images/harbin-08.jpg",
+        alt: "面包石历史展厅照片",
+        caption: "面包石展厅适合补足街区故事线。"
+      }
     ]
   },
   {
+    id: "river",
+    order: "03",
     time: "17:30-20:00",
+    area: "日落收尾",
     title: "松花江边与防洪纪念塔",
-    summary: "把最后的时间留给日落、蓝调和夜景，江边风一起来，整条路线的气氛就完整了。",
-    bullets: [
-      "日落前半小时到位，江水一侧更容易拿到柔和逆光。",
-      "夜景可以把纪念塔、江面倒影和彩桥一起收进画面。",
-      "推荐对应图片：图 1、图 3、图 6。"
+    summary:
+      "把最后一段时间留给松花江是很值得的。白天走到这里是散步，傍晚走到这里就是气氛；日落、蓝调和夜景会把整趟路线完整收住。",
+    history: [
+      "防洪纪念塔是哈尔滨非常有代表性的城市符号，和江边一起看更有存在感。",
+      "松花江沿线的开阔视野很适合留给日落、桥梁灯光和夜色层次。"
+    ],
+    food: [
+      "这一段更适合轻松散步和看景，正餐建议在中央大街先吃完再过去。",
+      "如果想边走边休息，可以带一杯热饮去江边慢慢看天色变化。"
+    ],
+    photoSpots: [
+      "日落前半小时到江边最稳，靠近江水一侧更容易拿到柔和逆光。",
+      "防洪纪念塔台阶适合拍到塔、江面和桥灯同框，夜景层次会更丰富。",
+      "蓝调时刻是这站最容易出片的时间。"
+    ],
+    photos: [
+      {
+        image: "/images/harbin-01.jpg",
+        alt: "松花江边傍晚照片",
+        caption: "傍晚的江边，是这趟路线最温柔的一段。"
+      },
+      {
+        image: "/images/harbin-03.jpg",
+        alt: "松花江边日落人物照片",
+        caption: "逆光人像很适合留在这一站拍。"
+      },
+      {
+        image: "/images/harbin-06.jpg",
+        alt: "防洪纪念塔和夜景拼图照片",
+        caption: "夜景、桥灯和防洪塔一起出现时，整天就有了结尾。"
+      }
     ]
   }
 ];
 
-const highlights = [
-  "图文专页，不再是博客归档",
-  "8 张图片全部已接入页面",
-  "Astro 静态站，适合 Cloudflare Pages 自动构建",
-  "后续继续加别的城市，也能沿用同一套结构"
+const quickFacts = [
+  "第一次来哈尔滨也能直接照着走",
+  "路线不走回头路，地标、街景、日落一次串起来",
+  "适合想拍照、想慢逛、又不想把行程排太满的人",
+  "8 张实拍图已经全部放进页面里"
 ];
 ---
 
@@ -101,36 +182,39 @@ const highlights = [
   <main class="page-shell">
     <section class="hero" id="top">
       <div class="hero-copy">
-        <p class="eyebrow">Harbin Photo Guide</p>
-        <h1>把这次哈尔滨旅行<br />做成一个专用网页</h1>
+        <p class="eyebrow">Harbin Travel Guide</p>
+        <h1>专属哈尔滨旅游攻略</h1>
         <p class="lead">
-          这不是博客首页，而是一份围绕你这次旅行内容重组的图文页面。路线从圣索菲亚教堂出发，经过中央大街，最后在松花江和防洪纪念塔收尾，8 张图片都按顺序放进来了。
+          如果你只打算用一天时间感受哈尔滨，这条路线会很舒服：上午看圣索菲亚教堂，中午和下午慢逛中央大街，傍晚去松花江边等日落，再把防洪纪念塔和夜景一起收进相册里。
+        </p>
+        <p class="lead lead-soft">
+          这份攻略更适合第一次来哈尔滨、想认真拍照、又不想走回头路的人。你可以把它当作一张能直接带着出门的图文路线卡。
         </p>
 
         <div class="hero-actions">
-          <a href="#gallery">看完整相册</a>
-          <a href="#route">看路线安排</a>
+          <a href="#route">先看地图路线</a>
+          <a href="#gallery">再看完整相册</a>
         </div>
 
         <div class="highlight-list">
-          {highlights.map((item) => <span>{item}</span>)}
+          {quickFacts.map((item) => <span>{item}</span>)}
         </div>
       </div>
 
       <aside class="hero-panel">
-        <p class="panel-label">一日顺路版</p>
+        <p class="panel-label">今日安排</p>
         <ol>
           <li>
-            <strong>上午</strong>
-            <span>圣索菲亚教堂，先外后内。</span>
+            <strong>09:00-11:00</strong>
+            <span>圣索菲亚教堂，先拍外景，再进展厅。</span>
           </li>
           <li>
-            <strong>中午到下午</strong>
-            <span>中央大街、张杨街、面包石展厅。</span>
+            <strong>11:30-17:00</strong>
+            <span>中央大街、张杨街、面包石展厅，边吃边逛边拍。</span>
           </li>
           <li>
-            <strong>傍晚到夜间</strong>
-            <span>松花江畔、防洪纪念塔、彩桥夜景。</span>
+            <strong>17:30-20:00</strong>
+            <span>松花江畔与防洪纪念塔，把日落和夜景留给收尾。</span>
           </li>
         </ol>
       </aside>
@@ -138,22 +222,163 @@ const highlights = [
 
     <section class="section section-intro">
       <div class="section-heading">
-        <p>页面定位</p>
-        <h2>一个适合持续更新的旅行相册页</h2>
+        <p>出发前先看</p>
+        <h2>这份攻略适合怎样玩哈尔滨</h2>
       </div>
       <div class="intro-grid">
         <article>
-          <h3>为什么适合你的使用方式</h3>
+          <h3>路线风格</h3>
           <p>
-            你现在的需求不是“个人博客”，而是一个能直接承载图文内容的专页。Astro 很适合这个方向：静态、快、结构清楚，后面加新城市时也不用把首页重新设计一遍。
+            这不是赶景点式的一日游，而是一条适合慢慢走、慢慢拍的路线。三个点位都集中在很适合散步的区域里，城市地标、老街质感和江边日落都能兼顾到。
           </p>
         </article>
         <article>
-          <h3>已经接好的内容</h3>
+          <h3>阅读方式</h3>
           <p>
-            现有哈尔滨攻略文案已经拆成路线、点位和图片说明；素材目录里的 8 张图也已经按图 1 到图 8 的顺序接入页面。
+            先看下面的地图版路线总览，点击地图钉就能切换不同景点的历史、推荐吃什么、拍照点位和对应照片。后面的完整相册则更适合你临出门前快速复习一遍机位。
           </p>
         </article>
+      </div>
+    </section>
+
+    <section class="section section-route" id="route">
+      <div class="section-heading">
+        <p>点击地图钉切换</p>
+        <h2>地图版路线总览</h2>
+      </div>
+
+      <div class="route-explorer">
+        <input class="route-toggle" type="radio" name="route-stop" id="route-sofia" checked />
+        <input class="route-toggle" type="radio" name="route-stop" id="route-central" />
+        <input class="route-toggle" type="radio" name="route-stop" id="route-river" />
+
+        <div class="route-map">
+          <div class="route-map__header">
+            <strong>哈尔滨主城漫游示意图</strong>
+            <span>示意图按实际游览顺序标注，先教堂，再街区，最后去江边。</span>
+          </div>
+
+          <svg viewBox="0 0 900 620" aria-hidden="true" class="route-map__art">
+            <defs>
+              <linearGradient id="land" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#f8ecda" />
+                <stop offset="100%" stop-color="#f2e1cb" />
+              </linearGradient>
+              <linearGradient id="river" x1="0%" x2="100%" y1="0%" y2="0%">
+                <stop offset="0%" stop-color="#7bb6d8" />
+                <stop offset="100%" stop-color="#9ad5ef" />
+              </linearGradient>
+            </defs>
+
+            <rect x="0" y="0" width="900" height="620" rx="42" fill="url(#land)" />
+            <path
+              d="M-10 160 C120 120, 230 210, 360 184 S620 120, 760 160 S920 250, 940 212 L940 330 C820 372, 720 308, 580 336 S320 420, 172 368 S26 280, -10 300 Z"
+              fill="url(#river)"
+              opacity="0.96"
+            />
+            <path
+              d="M166 468 C280 410, 388 390, 484 398 S678 420, 772 360"
+              fill="none"
+              stroke="#d7b68b"
+              stroke-width="22"
+              stroke-linecap="round"
+              stroke-dasharray="1 28"
+              opacity="0.55"
+            />
+            <path
+              d="M494 448 C560 398, 594 352, 598 282"
+              fill="none"
+              stroke="#d7b68b"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-dasharray="1 24"
+              opacity="0.45"
+            />
+            <path
+              d="M560 154 C596 196, 642 218, 696 220"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="8"
+              stroke-linecap="round"
+              opacity="0.65"
+            />
+            <path
+              d="M214 260 C264 292, 330 292, 382 264"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="8"
+              stroke-linecap="round"
+              opacity="0.45"
+            />
+            <text x="116" y="118" class="map-label">松北区</text>
+            <text x="250" y="284" class="map-label">松花江</text>
+            <text x="300" y="470" class="map-label">道里区</text>
+            <text x="562" y="474" class="map-label">南岗区</text>
+            <text x="104" y="548" class="map-sub">上午从索菲亚教堂出发</text>
+            <text x="576" y="88" class="map-sub">傍晚在江边等日落</text>
+          </svg>
+
+          <label class="map-pin map-pin--sofia" for="route-sofia">
+            <span class="map-pin__dot"><span class="map-pin__number">01</span></span>
+            <span class="map-pin__text">圣索菲亚教堂</span>
+          </label>
+
+          <label class="map-pin map-pin--central" for="route-central">
+            <span class="map-pin__dot"><span class="map-pin__number">02</span></span>
+            <span class="map-pin__text">中央大街片区</span>
+          </label>
+
+          <label class="map-pin map-pin--river" for="route-river">
+            <span class="map-pin__dot"><span class="map-pin__number">03</span></span>
+            <span class="map-pin__text">松花江与防洪塔</span>
+          </label>
+        </div>
+
+        <div class="route-panels">
+          {routeSpots.map((spot) => (
+            <article class:list={["route-card", `route-card--${spot.id}`]}>
+              <div class="route-card__head">
+                <p>{spot.time}</p>
+                <h3>{spot.title}</h3>
+                <span>{spot.area}</span>
+              </div>
+
+              <p class="route-card__summary">{spot.summary}</p>
+
+              <div class="route-card__content">
+                <section>
+                  <h4>历史与看点</h4>
+                  <ul>
+                    {spot.history.map((item) => <li>{item}</li>)}
+                  </ul>
+                </section>
+
+                <section>
+                  <h4>吃什么更顺路</h4>
+                  <ul>
+                    {spot.food.map((item) => <li>{item}</li>)}
+                  </ul>
+                </section>
+
+                <section>
+                  <h4>拍照点位</h4>
+                  <ul>
+                    {spot.photoSpots.map((item) => <li>{item}</li>)}
+                  </ul>
+                </section>
+              </div>
+
+              <div class="route-card__photos">
+                {spot.photos.map((photo) => (
+                  <figure>
+                    <img src={photo.image} alt={photo.alt} loading="lazy" />
+                    <figcaption>{photo.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -176,60 +401,38 @@ const highlights = [
       </div>
     </section>
 
-    <section class="section" id="route">
-      <div class="section-heading">
-        <p>按顺路走</p>
-        <h2>一日游览时间线</h2>
-      </div>
-
-      <div class="timeline">
-        {stops.map((stop) => (
-          <article class="timeline-item">
-            <div class="timeline-time">{stop.time}</div>
-            <div class="timeline-content">
-              <h3>{stop.title}</h3>
-              <p>{stop.summary}</p>
-              <ul>
-                {stop.bullets.map((bullet) => <li>{bullet}</li>)}
-              </ul>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
     <section class="section section-notes">
       <div class="section-heading">
-        <p>点位说明</p>
-        <h2>三段内容，刚好把这次行程讲完整</h2>
+        <p>最后补三句</p>
+        <h2>这一条路线为什么值得照着走</h2>
       </div>
 
       <div class="notes-grid">
         <article class="note-card">
-          <h3>圣索菲亚教堂</h3>
+          <h3>地标先立住</h3>
           <p>
-            这是路线里最适合作为开头的点。建筑辨识度高，进展厅前后都能拍到不同的氛围层次，既适合当“到此一游”的地标，也适合做更安静的室内照片。
+            先去索菲亚教堂，可以很快建立起“我到哈尔滨了”的感觉。建筑风格足够鲜明，也最适合做一日路线的开场。
           </p>
         </article>
 
         <article class="note-card">
-          <h3>中央大街</h3>
+          <h3>街区负责松弛感</h3>
           <p>
-            中央大街不是只拍大街本身，真正出彩的是散落在街区里的小机位：张杨街的门牌、可口可乐橱窗、面包石展厅，这些细节会让整页内容更像一份亲身走过的攻略。
+            中央大街的意义不只是打卡，它更像是整条路线的缓冲带。吃饭、逛街、拍细节，都可以在这一段自然发生。
           </p>
         </article>
 
         <article class="note-card">
-          <h3>松花江与防洪纪念塔</h3>
+          <h3>江边负责把情绪收满</h3>
           <p>
-            收尾一定要给江边和夜色。前面的建筑和街景负责建立城市印象，最后的江面、彩桥和纪念塔负责把情绪拉满，这样整页内容从视觉上也更完整。
+            前面看的是城市样子，最后看的是城市气氛。把日落和夜景留到最后，会让这趟哈尔滨更像一段完整的旅行，而不只是几个景点的拼接。
           </p>
         </article>
       </div>
     </section>
 
     <footer class="footer">
-      <p>Built with Astro for `andrewlihhh.github.io` and ready for Cloudflare Pages auto deploy.</p>
+      <p>这份攻略会持续更新，下一次来哈尔滨的时候，也可以继续往里补新的路线和照片。</p>
       <a href="#top">回到顶部</a>
     </footer>
   </main>
@@ -284,23 +487,29 @@ const highlights = [
   h1,
   h2,
   h3,
+  h4,
   p {
     margin-top: 0;
   }
 
   .hero h1 {
     margin: 14px 0 16px;
-    font-size: clamp(2.4rem, 5vw, 4.8rem);
+    font-size: clamp(2.55rem, 5vw, 5rem);
     line-height: 1.03;
   }
 
   .lead,
   .intro-grid p,
-  .timeline-content p,
   .note-card p,
-  figcaption p {
+  figcaption p,
+  .route-card__summary,
+  .route-map__header span {
     color: var(--muted);
     line-height: 1.9;
+  }
+
+  .lead-soft {
+    margin-top: -2px;
   }
 
   .hero-actions,
@@ -381,14 +590,17 @@ const highlights = [
 
   .section-heading h2 {
     margin-bottom: 0;
-    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    font-size: clamp(1.75rem, 3vw, 2.65rem);
   }
 
   .intro-grid,
   .notes-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
+  }
+
+  .intro-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .notes-grid {
@@ -401,6 +613,259 @@ const highlights = [
     border-radius: var(--radius-lg);
     background: rgba(255, 255, 255, 0.56);
     border: 1px solid var(--line);
+  }
+
+  .section-route {
+    background:
+      radial-gradient(circle at top right, rgba(157, 208, 232, 0.16), transparent 26%),
+      radial-gradient(circle at bottom left, rgba(232, 176, 104, 0.12), transparent 24%),
+      var(--surface);
+  }
+
+  .route-explorer {
+    display: grid;
+    grid-template-columns: minmax(0, 1.03fr) minmax(340px, 0.97fr);
+    gap: 20px;
+  }
+
+  .route-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .route-map,
+  .route-card {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.58);
+  }
+
+  .route-map {
+    position: relative;
+    overflow: hidden;
+    min-height: 640px;
+    padding: 18px;
+  }
+
+  .route-map__header {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 6px;
+    max-width: 360px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    background: rgba(255, 252, 247, 0.82);
+    box-shadow: 0 12px 24px rgba(72, 45, 22, 0.08);
+  }
+
+  .route-map__header strong {
+    font-size: 1.05rem;
+  }
+
+  .route-map__art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .map-label,
+  .map-sub {
+    fill: rgba(81, 57, 40, 0.78);
+    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  }
+
+  .map-label {
+    font-size: 28px;
+  }
+
+  .map-sub {
+    font-size: 20px;
+    opacity: 0.8;
+  }
+
+  .map-pin {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 160ms ease;
+    z-index: 3;
+  }
+
+  .map-pin:hover {
+    transform: translateY(-2px);
+  }
+
+  .map-pin__dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: linear-gradient(135deg, #d96f42, #96371f);
+    color: #fffaf4;
+    box-shadow: 0 14px 24px rgba(113, 47, 24, 0.28);
+    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  }
+
+  .map-pin__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .map-pin__text {
+    position: relative;
+    padding: 11px 14px;
+    border-radius: 999px;
+    background: rgba(255, 252, 247, 0.88);
+    border: 1px solid rgba(135, 88, 58, 0.15);
+    box-shadow: 0 10px 24px rgba(72, 45, 22, 0.08);
+    color: #513526;
+    font-size: 0.94rem;
+  }
+
+  .map-pin--sofia {
+    left: 58%;
+    top: 67%;
+  }
+
+  .map-pin--central {
+    left: 42%;
+    top: 50%;
+  }
+
+  .map-pin--river {
+    left: 26%;
+    top: 25%;
+  }
+
+  .map-pin--river .map-pin__text {
+    max-width: 172px;
+  }
+
+  .route-panels {
+    position: relative;
+  }
+
+  .route-card {
+    display: none;
+    padding: 24px;
+    height: 100%;
+  }
+
+  .route-card__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px 14px;
+    margin-bottom: 12px;
+  }
+
+  .route-card__head p,
+  .route-card__head span {
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.92rem;
+  }
+
+  .route-card__head h3 {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+
+  .route-card__summary {
+    margin-bottom: 18px;
+  }
+
+  .route-card__content {
+    display: grid;
+    gap: 16px;
+  }
+
+  .route-card__content section {
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(135, 88, 58, 0.1);
+  }
+
+  .route-card__content h4 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+
+  .route-card__content ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--muted);
+    line-height: 1.82;
+  }
+
+  .route-card__photos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .route-card__photos figure {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(135, 88, 58, 0.1);
+  }
+
+  .route-card__photos img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .route-card__photos figcaption {
+    padding: 12px 14px 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 0.92rem;
+  }
+
+  #route-sofia:checked ~ .route-map .map-pin--sofia,
+  #route-central:checked ~ .route-map .map-pin--central,
+  #route-river:checked ~ .route-map .map-pin--river {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  #route-sofia:checked ~ .route-map .map-pin--sofia .map-pin__dot,
+  #route-central:checked ~ .route-map .map-pin--central .map-pin__dot,
+  #route-river:checked ~ .route-map .map-pin--river .map-pin__dot {
+    background: linear-gradient(135deg, #f18f58, #b94622);
+    box-shadow: 0 18px 28px rgba(113, 47, 24, 0.34);
+  }
+
+  #route-sofia:checked ~ .route-map .map-pin--sofia .map-pin__text,
+  #route-central:checked ~ .route-map .map-pin--central .map-pin__text,
+  #route-river:checked ~ .route-map .map-pin--river .map-pin__text {
+    background: #fff9f3;
+    border-color: rgba(201, 101, 56, 0.24);
+  }
+
+  #route-sofia:checked ~ .route-panels .route-card--sofia,
+  #route-central:checked ~ .route-panels .route-card--central,
+  #route-river:checked ~ .route-panels .route-card--river {
+    display: block;
   }
 
   .gallery-grid {
@@ -438,36 +903,6 @@ const highlights = [
     font-size: 1.02rem;
   }
 
-  .timeline {
-    display: grid;
-    gap: 16px;
-  }
-
-  .timeline-item {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 18px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-  }
-
-  .timeline-item:first-child {
-    padding-top: 0;
-    border-top: 0;
-  }
-
-  .timeline-time {
-    color: var(--accent-deep);
-    font-size: 0.95rem;
-  }
-
-  .timeline-content ul {
-    margin: 12px 0 0;
-    padding-left: 20px;
-    color: var(--muted);
-    line-height: 1.8;
-  }
-
   .footer {
     display: flex;
     justify-content: space-between;
@@ -475,6 +910,16 @@ const highlights = [
     padding: 18px 8px 0;
     color: var(--muted);
     font-size: 0.94rem;
+  }
+
+  @media (max-width: 1100px) {
+    .route-explorer {
+      grid-template-columns: 1fr;
+    }
+
+    .route-map {
+      min-height: 560px;
+    }
   }
 
   @media (max-width: 980px) {
@@ -501,11 +946,63 @@ const highlights = [
       font-size: 2.45rem;
     }
 
-    .timeline-item {
-      grid-template-columns: 1fr;
-      gap: 8px;
+    .route-map {
+      min-height: 520px;
+      padding: 14px;
     }
 
+    .route-map__header {
+      max-width: 100%;
+      padding: 14px;
+    }
+
+    .map-label {
+      font-size: 22px;
+    }
+
+    .map-sub {
+      font-size: 16px;
+    }
+
+    .map-pin {
+      gap: 6px;
+    }
+
+    .map-pin__dot {
+      width: 44px;
+      height: 44px;
+      font-size: 0.8rem;
+    }
+
+    .map-pin__text {
+      padding: 8px 11px;
+      font-size: 0.82rem;
+    }
+
+    .map-pin--sofia {
+      left: 50%;
+      top: 66%;
+    }
+
+    .map-pin--central {
+      left: 30%;
+      top: 49%;
+    }
+
+    .map-pin--river {
+      left: 14%;
+      top: 23%;
+    }
+
+    .route-card {
+      padding: 18px;
+    }
+
+    .route-card__photos {
+      grid-template-columns: 1fr;
+    }
+
+    .route-card__photos img,
     .gallery-card img,
     .gallery-card--tall img {
       height: auto;
