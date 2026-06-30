@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "专属哈尔滨旅游攻略";
 const description =
-  "一份适合第一次到哈尔滨慢慢逛、认真拍照的一日旅游攻略，覆盖圣索菲亚教堂、中央大街和松花江日落夜景。";
+  "一份从哈尔滨火车站附近出发的三日旅游攻略，覆盖圣索菲亚教堂、中央大街、松花江、太阳岛、极地公园和伏尔加庄园。";
 
 const gallery = [
   {
@@ -60,6 +60,10 @@ const routeSpots = [
   {
     id: "sofia",
     order: "01",
+    day: "Day 1",
+    type: "day1",
+    lat: 45.75944,
+    lng: 126.64436,
     time: "09:00-11:00",
     area: "上午开场",
     title: "圣索菲亚教堂",
@@ -70,7 +74,7 @@ const routeSpots = [
       "外立面适合拍建筑大片，内部展厅则更偏向安静、复古和氛围感。"
     ],
     food: [
-      "从这里出发去中央大街很顺，可以把午饭留给后面的俄式西餐或锅包肉老店。",
+      "不能食用：锅包肉、俄式香肠、肉酱类菜品。",
       "如果想轻量补给，沿路买一根马迭尔冰棍会很方便。"
     ],
     photoSpots: [
@@ -93,6 +97,10 @@ const routeSpots = [
   {
     id: "central",
     order: "02",
+    day: "Day 1",
+    type: "day1",
+    lat: 45.78018,
+    lng: 126.62358,
     time: "11:30-17:00",
     area: "午后慢逛",
     title: "中央大街片区",
@@ -103,7 +111,7 @@ const routeSpots = [
       "张杨街一带的创意门牌、文创巷口和展板，都很适合拍出带故事感的街头照片。"
     ],
     food: [
-      "午饭推荐留在这一区域，俄式西餐、锅包肉和红肠都比较顺路。",
+      "不能食用：锅包肉、哈尔滨红肠、俄式香肠、肉排、肉酱类菜品。",
       "边走边吃马迭尔冰棍，会让这段街区体验更有哈尔滨味道。"
     ],
     photoSpots: [
@@ -132,6 +140,10 @@ const routeSpots = [
   {
     id: "river",
     order: "03",
+    day: "Day 1",
+    type: "day1",
+    lat: 45.78276,
+    lng: 126.61741,
     time: "17:30-20:00",
     area: "日落收尾",
     title: "松花江边与防洪纪念塔",
@@ -170,30 +182,348 @@ const routeSpots = [
   }
 ];
 
+const hotelStay = {
+  id: "hotel",
+  order: "住",
+  lat: 45.7599,
+  lng: 126.6268,
+  title: "全季哈尔滨火车站机场巴士站酒店",
+  summary: "南岗区铁路街12号，靠近哈尔滨火车站南广场，适合作为三天路线的出发点和回程点。",
+  address: "南岗区铁路街12号（哈尔滨火车站南广场出口步行约100米）"
+};
+
+const hotelRouteSpot = {
+  id: "hotel",
+  order: "住",
+  day: "Hotel",
+  type: "hotel",
+  lat: hotelStay.lat,
+  lng: hotelStay.lng,
+  time: "抵达日 / 每晚回程",
+  area: "住宿据点",
+  title: hotelStay.title,
+  summary:
+    "这家全季就在哈尔滨火车站南广场附近，第一天去索菲亚教堂和中央大街顺，第二天去江北、第三天跑近郊也都方便。",
+  history: [
+    "住在火车站附近的优势是交通转换快，适合把哈尔滨当成三天的据点来慢慢展开。",
+    "如果你是高铁到达或最后一天还要返程，这个位置会明显省心。"
+  ],
+  food: [
+    "不能食用：锅包肉、红肠、猪肉馅饺子。",
+    "火车站周边适合做早餐、夜宵和补给，不建议把正餐期待放太高。"
+  ],
+  photoSpots: [
+    "如果想拍“出发感”照片，酒店门口、站前广场或铁路元素都可以做开场。",
+    "这里更像行程据点，不是主打拍照的景点。"
+  ],
+  photos: []
+};
+
+const dayTwoSpots = [
+  {
+    id: "sunisland",
+    order: "04",
+    day: "Day 2",
+    type: "day2",
+    lat: 45.791584,
+    lng: 126.59788,
+    time: "09:30-12:30",
+    area: "江北慢逛",
+    title: "太阳岛风景区",
+    summary:
+      "第二天最适合先来太阳岛，把节奏放慢一点。林荫、水面、草地和湿地景观都比较舒展，很适合从老城区切换到更松弛的旅行状态。",
+    history: [
+      "哈尔滨市政府公开的旅游景点页把太阳岛列为核心景点之一，是很多游客第一次来江北会先去的一站。",
+      "这里的吸引力不只在某一个单点，而在于整片环境的开阔感和慢逛体验。"
+    ],
+    food: [
+      "这一站更适合准备轻食、咖啡和水，别把午饭时间压得太紧。",
+      "不能食用：锅包肉、红肠、猪肉炖菜。"
+    ],
+    photoSpots: [
+      "林荫步道、滨水栈道和大面积草地都很适合拍轻松一点的人像。",
+      "如果天气好，逆光下的树影和水边轮廓会比正午硬拍更出片。"
+    ],
+    photos: []
+  },
+  {
+    id: "polarland",
+    order: "05",
+    day: "Day 2",
+    type: "day2",
+    lat: 45.784741,
+    lng: 126.586057,
+    time: "13:00-16:30",
+    area: "极地主题",
+    title: "哈尔滨极地公园",
+    summary:
+      "从太阳岛接到极地公园很自然。这里更偏互动体验和馆内内容，适合把第二天的后半段从散步切到更集中的项目体验。",
+    history: [
+      "极地公园官网把这里定位成原创型极地文旅度假区，主打极地主题表演、动物互动体验和科普内容。",
+      "如果同行人里有亲子、情侣，或者本身就想看馆内项目，这一站会很合适。"
+    ],
+    food: [
+      "馆区内以简餐和快餐节奏为主，别指望太多“专门来吃”的店。",
+      "不能食用：猪肉铁锅炖、排骨、五花肉、香肠、猪肉串。"
+    ],
+    photoSpots: [
+      "入口区和室外装置适合拍到达照，馆内更适合抓互动瞬间和氛围照。",
+      "如果拍人像，建议优先找自然光更好的入口区域。"
+    ],
+    photos: []
+  },
+  {
+    id: "tiger",
+    order: "06",
+    day: "Day 2",
+    type: "day2",
+    lat: 45.817459,
+    lng: 126.597257,
+    time: "16:45-18:30",
+    area: "延伸可选",
+    title: "东北虎林园",
+    summary:
+      "如果你更想看猛兽主题，东北虎林园可以作为第二天的替换项，或者在时间和体力都够的时候再往后延伸。",
+    history: [
+      "哈尔滨市政府公开旅游景点页把东北虎林园列入重点景点，它本身就是很多游客会专门前往的一站。",
+      "和极地公园相比，这里更偏户外、动物主题和功能型参观。"
+    ],
+    food: [
+      "这一站更建议轻装快速游览，晚餐留到回市区之后再认真吃。",
+      "不能食用：猪肉串、红肠、猪肉炖菜。"
+    ],
+    photoSpots: [
+      "更适合用长焦或手机放大拍动物状态，不太适合安排大量人像创作。",
+      "如果只是想保留纪实感，到入口和观览区各留一组就够了。"
+    ],
+    photos: []
+  }
+];
+
+const dayThreeSpots = [
+  {
+    id: "volga",
+    order: "07",
+    day: "Day 3",
+    type: "day3",
+    lat: 45.671199,
+    lng: 126.899467,
+    time: "09:00-16:30",
+    area: "近郊主线",
+    title: "伏尔加庄园",
+    summary:
+      "如果第三天只选一个近郊大点位，伏尔加庄园很合适。俄式建筑、水岸、草地和慢节奏感都集中在这里，适合把最后一天过成度假模式。",
+    history: [
+      "伏尔加庄园官网公开地址位于香坊区哈成路 16 公里处，是哈尔滨很有代表性的俄式风情景区。",
+      "它更适合整块时间去慢慢逛，不太适合和多个市内点位强行拼在一起。"
+    ],
+    food: [
+      "这一站更适合在园区解决简餐，或者回市区后补一顿正式晚饭。",
+      "不能食用：锅包肉、杀猪菜、红肠。"
+    ],
+    photoSpots: [
+      "俄式建筑立面、湖边步道和草地留白都很适合拍整组照片。",
+      "阴天、傍晚和柔和天气会比正午硬光更出氛围。"
+    ],
+    photos: []
+  },
+  {
+    id: "museum731",
+    order: "08",
+    day: "Day 3",
+    type: "day3",
+    lat: 45.609481,
+    lng: 126.641004,
+    time: "10:00-13:00",
+    area: "人文备选",
+    title: "侵华日军第七三一部队罪证陈列馆",
+    summary:
+      "如果第三天不想跑近郊度假线，可以改成人文线。731 陈列馆会让整趟旅行从城市风景转向历史现场，情绪和重量都完全不一样。",
+    history: [
+      "公开资料显示，陈列馆位于哈尔滨市平房区新疆大街一带，是哈尔滨非常重要的近现代历史现场。",
+      "这一站更适合静下来看，不建议带着“打卡式赶景点”的节奏进去。"
+    ],
+    food: [
+      "参观完更适合找个安静一点的地方吃饭，给情绪留一点缓冲。",
+      "不能食用：猪肉饺子、猪肉炖菜、猪肉串。"
+    ],
+    photoSpots: [
+      "这里更适合做纪实记录，而不是刻意拍人像大片。",
+      "建议把镜头重点放在建筑、展陈入口和环境氛围，而不是大量摆拍。"
+    ],
+    photos: []
+  },
+  {
+    id: "baroque",
+    order: "09",
+    day: "Day 3",
+    type: "day3",
+    lat: 45.7906,
+    lng: 126.6492,
+    time: "14:00-18:30",
+    area: "人文备选",
+    title: "中华巴洛克历史文化街区",
+    summary:
+      "如果第三天走市内人文线，731 之后接中华巴洛克会很顺。这里既有老道外的建筑肌理，也有更鲜明的街区烟火气，能把哈尔滨的另一面补完整。",
+    history: [
+      "哈尔滨市政府公开报道提到，这里拥有国内建筑规模最大、保留最完整的中华巴洛克建筑群。",
+      "街区以靖宇街为轴，两侧巷子、牌楼和历史建筑一起构成了老道外最有故事感的部分。"
+    ],
+    food: [
+      "不能食用：红肠、锅包肉、猪肉包子、猪肉馅饺子。",
+      "如果你当天还想买伴手礼，这里也比纯景区更方便。"
+    ],
+    photoSpots: [
+      "牌楼、靖宇街沿线、南三道街和老建筑立面都适合拍城市纪实感照片。",
+      "傍晚亮灯之后更有层次，适合把第三天收在这类有烟火气的画面里。"
+    ],
+    photos: []
+  }
+];
+
+const routeDetailSpots = [
+  hotelRouteSpot,
+  ...routeSpots,
+  ...dayTwoSpots,
+  ...dayThreeSpots
+];
+
+const cityMapMarkers = routeDetailSpots.map((spot) => ({
+  id: spot.id,
+  order: spot.order,
+  type: spot.type,
+  title: spot.title,
+  summary: spot.summary,
+  image: spot.photos[0]?.image ?? "",
+  lat: spot.lat,
+  lng: spot.lng,
+  panelId: spot.id
+}));
+
+const tripDays = [
+  {
+    day: "Day 1",
+    title: "老城经典线",
+    subtitle: "从酒店出发，把哈尔滨最标志性的城市气质先走一遍。",
+    schedule: [
+      "上午：从酒店出发去圣索菲亚教堂，先拍外景，再进展厅。",
+      "中午到下午：中央大街慢逛，顺路看面包石展厅、张杨街创意门牌和沿街橱窗。",
+      "傍晚到夜间：松花江、防洪纪念塔和铁路桥夜景收尾。"
+    ],
+    food: "不能食用：锅包肉、哈尔滨红肠、俄式香肠、肉酱类菜品。",
+    traffic: "这一天以步行加短距离打车为主，从火车站附近出发很顺。"
+  },
+  {
+    day: "Day 2",
+    title: "江北休闲线",
+    subtitle: "把第二天留给松花江北岸，更适合看景、散步和补足亲子 / 自然体验。",
+    schedule: [
+      "上午：太阳岛风景区，适合在树荫、水边和湿地区域慢慢走。",
+      "下午：哈尔滨极地公园，想看动物和馆内项目就放在这一站。",
+      "可选延伸：如果更喜欢动物主题，可以把极地公园替换成东北虎林园。"
+    ],
+    food: "不能食用：猪肉铁锅炖、五花肉、排骨、红肠、猪肉串。",
+    traffic: "从酒店去江北更建议直接打车或网约车，节省换乘时间。"
+  },
+  {
+    day: "Day 3",
+    title: "近郊度假线",
+    subtitle: "把最后一天留给哈尔滨周边的代表性景点，节奏放慢一点更值。",
+    schedule: [
+      "推荐主线：伏尔加庄园一日游，适合喜欢俄式建筑、草地、水边和轻度拍照的人。",
+      "到园后可以把主要时间留给建筑群、湖边草地和园区慢逛，不建议排得太赶。",
+      "如果不想跑近郊，也可以把第三天改成 731 陈列馆 + 中华巴洛克历史文化街区的人文线。"
+    ],
+    food: "不能食用：锅包肉、红肠、杀猪菜、猪肉饺子、猪肉串。",
+    traffic: "伏尔加庄园离市区有一定距离，更建议包车、打车或一早跟车出发。"
+  }
+];
+
 const quickFacts = [
-  "第一次来哈尔滨也能直接照着走",
-  "路线不走回头路，地标、街景、日落一次串起来",
-  "适合想拍照、想慢逛、又不想把行程排太满的人",
-  "8 张实拍图已经全部放进页面里"
+  "酒店就在哈尔滨火车站附近，出发和回程都方便",
+  "三天分成老城经典、江北休闲、近郊度假三条线",
+  "适合第一次来哈尔滨、想拍照也想认真逛的人",
+  "地图上已经单独用蓝色地图钉标出酒店据点",
+  "文中餐饮已经额外标出常见含猪肉项目"
+];
+
+const nearbyPicks = [
+  {
+    title: "太阳岛风景区",
+    tag: "Day 2 主线",
+    detail:
+      "哈尔滨市政府旅游景点公开页把太阳岛列为核心景点之一，适合白天慢逛，树荫、水岸和湿地视野会比老城更舒展。",
+    tip: "建议预留半天到大半天，穿舒服一点，顺着步道慢慢走更值。"
+  },
+  {
+    title: "哈尔滨极地公园",
+    tag: "Day 2 主线",
+    detail:
+      "官方介绍强调这里位于太阳岛片区，主打极地主题表演、动物互动体验和科普内容，和太阳岛非常适合串成同一天。",
+    tip: "更适合亲子、情侣或者想补足互动体验的人。"
+  },
+  {
+    title: "东北虎林园",
+    tag: "Day 2 替换项",
+    detail:
+      "哈尔滨市政府旅游景点页把东北虎林园列为重点景点，如果你比起馆内演出更想看猛兽主题，这一站会更对味。",
+    tip: "适合作为极地公园的替换项，不建议和太多点位硬塞在一天里。"
+  },
+  {
+    title: "伏尔加庄园",
+    tag: "Day 3 主线",
+    detail:
+      "哈尔滨市政府旅游景点页把伏尔加庄园列入热门景点，整体更偏俄式建筑、水岸草地和慢节奏度假感，很适合拿来做第三天。",
+    tip: "建议一早出发，把拍照和慢逛时间留足，不然会有点赶。"
+  },
+  {
+    title: "731 陈列馆",
+    tag: "Day 3 人文线",
+    detail:
+      "侵华日军第七三一部队罪证陈列馆也是哈尔滨官方旅游景点清单中的重要站点，适合更想了解城市近现代历史的人。",
+    tip: "这条线情绪会更沉一些，建议和轻松景点分开安排。"
+  },
+  {
+    title: "中华巴洛克历史文化街区",
+    tag: "Day 3 人文线",
+    detail:
+      "哈尔滨市政府 2026 年 2 月 17 日公开报道提到，这里拥有国内建筑规模最大、保留最完整的中华巴洛克建筑群，也是哈尔滨热门打卡地。",
+    tip: "如果第三天不想跑近郊，就把它和 731 组合成一条更有故事感的人文线。"
+  }
+];
+
+const tiandituKey = "0e4ce4839d48c6b8bd1134eda871341c";
+const routeMapData = cityMapMarkers;
+const dayOnePath = [
+  [hotelStay.lat, hotelStay.lng],
+  ...routeSpots.map((spot) => [spot.lat, spot.lng])
 ];
 ---
 
 <BaseLayout title={title} description={description}>
+  <Fragment slot="head">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  </Fragment>
+
   <main class="page-shell">
     <section class="hero" id="top">
       <div class="hero-copy">
         <p class="eyebrow">Harbin Travel Guide</p>
         <h1>专属哈尔滨旅游攻略</h1>
         <p class="lead">
-          如果你只打算用一天时间感受哈尔滨，这条路线会很舒服：上午看圣索菲亚教堂，中午和下午慢逛中央大街，傍晚去松花江边等日落，再把防洪纪念塔和夜景一起收进相册里。
+          如果你准备在哈尔滨住上三天，这份路线会比“一天赶完”舒服很多。第一天看老城与江景，第二天去松花江北岸慢逛太阳岛和极地公园，第三天再留给近郊的伏尔加庄园或人文备选线。
         </p>
         <p class="lead lead-soft">
-          这份攻略更适合第一次来哈尔滨、想认真拍照、又不想走回头路的人。你可以把它当作一张能直接带着出门的图文路线卡。
+          你住在哈尔滨火车站附近，全季酒店这个位置其实很适合作为据点：去中央大街和索菲亚教堂不远，往江北或近郊出发也方便。
         </p>
 
         <div class="hero-actions">
           <a href="#route">先看地图路线</a>
-          <a href="#gallery">再看完整相册</a>
+          <a href="#plan">再看三日安排</a>
         </div>
 
         <div class="highlight-list">
@@ -202,19 +532,19 @@ const quickFacts = [
       </div>
 
       <aside class="hero-panel">
-        <p class="panel-label">今日安排</p>
+        <p class="panel-label">三日安排</p>
         <ol>
           <li>
-            <strong>09:00-11:00</strong>
-            <span>圣索菲亚教堂，先拍外景，再进展厅。</span>
+            <strong>Day 1</strong>
+            <span>老城经典线：索菲亚教堂、中央大街、松花江和防洪纪念塔。</span>
           </li>
           <li>
-            <strong>11:30-17:00</strong>
-            <span>中央大街、张杨街、面包石展厅，边吃边逛边拍。</span>
+            <strong>Day 2</strong>
+            <span>江北休闲线：太阳岛、极地公园，喜欢动物可换东北虎林园。</span>
           </li>
           <li>
-            <strong>17:30-20:00</strong>
-            <span>松花江畔与防洪纪念塔，把日落和夜景留给收尾。</span>
+            <strong>Day 3</strong>
+            <span>近郊度假线：伏尔加庄园一日游，或者改成人文线慢慢逛。</span>
           </li>
         </ol>
       </aside>
@@ -227,59 +557,31 @@ const quickFacts = [
       </div>
 
       <div class="route-explorer">
-        <input class="route-toggle" type="radio" name="route-stop" id="route-sofia" checked />
-        <input class="route-toggle" type="radio" name="route-stop" id="route-central" />
-        <input class="route-toggle" type="radio" name="route-stop" id="route-river" />
-
         <div class="route-map">
           <div class="route-map__header">
-            <strong>哈尔滨主城区真实底图</strong>
-            <span>底图覆盖这次路线最核心的区域，点一下地图钉，就能切换对应景点的攻略内容。</span>
+            <strong>哈尔滨真实地图路线</strong>
+            <span>地图底图使用天地图。蓝色是酒店据点，橙色是 Day 1 老城线，绿色是 Day 2 江北线，青绿色是 Day 3 近郊 / 人文线；现在所有地图钉都能点击，右侧会切换到对应详情页。</span>
+            <div class="route-map__legend">
+              <span><i class="route-map__legend-dot route-map__legend-dot--hotel"></i>酒店据点</span>
+              <span><i class="route-map__legend-dot route-map__legend-dot--day1"></i>Day 1 老城</span>
+              <span><i class="route-map__legend-dot route-map__legend-dot--day2"></i>Day 2 江北</span>
+              <span><i class="route-map__legend-dot route-map__legend-dot--day3"></i>Day 3 近郊 / 人文</span>
+            </div>
           </div>
-
-          <img
-            src="/maps/harbin-route-map.png"
-            alt="哈尔滨主城区真实地图底图，展示圣索菲亚教堂、中央大街和松花江防洪纪念塔一带"
-            class="route-map__image"
-            loading="lazy"
-          />
-          <svg viewBox="0 0 100 100" aria-hidden="true" class="route-map__overlay">
-            <path
-              d="M21 15 C23 18, 26 21, 31 28 S62 56, 88 75"
-              fill="none"
-              stroke="rgba(201, 101, 56, 0.76)"
-              stroke-width="1.1"
-              stroke-linecap="round"
-              stroke-dasharray="0.5 2.2"
-            />
-          </svg>
-          <p class="route-map__credit">
-            地图底图基于 OpenStreetMap 数据生成，© OpenStreetMap contributors
-          </p>
-
-          <label class="map-pin map-pin--sofia" for="route-sofia">
-            <span class="map-pin__dot"><span class="map-pin__number">01</span></span>
-            <span class="map-pin__text">圣索菲亚教堂</span>
-          </label>
-
-          <label class="map-pin map-pin--central" for="route-central">
-            <span class="map-pin__dot"><span class="map-pin__number">02</span></span>
-            <span class="map-pin__text">中央大街片区</span>
-          </label>
-
-          <label class="map-pin map-pin--river" for="route-river">
-            <span class="map-pin__dot"><span class="map-pin__number">03</span></span>
-            <span class="map-pin__text">松花江与防洪塔</span>
-          </label>
+          <div id="route-map-canvas" class="route-map__canvas" aria-label="哈尔滨主城区地图"></div>
+          <p class="route-map__credit">底图：天地图矢量层 + 中文注记层</p>
         </div>
 
         <div class="route-panels">
-          {routeSpots.map((spot) => (
-            <article class:list={["route-card", `route-card--${spot.id}`]}>
+          {routeDetailSpots.map((spot) => (
+            <article
+              class:list={["route-card", `route-card--${spot.id}`, spot.id === "sofia" && "is-active"]}
+              data-route-card={spot.id}
+            >
               <div class="route-card__head">
-                <p>{spot.time}</p>
+                <p>{spot.order} · {spot.time}</p>
                 <h3>{spot.title}</h3>
-                <span>{spot.area}</span>
+                <span>{spot.day} · {spot.area}</span>
               </div>
 
               <p class="route-card__summary">{spot.summary}</p>
@@ -307,38 +609,75 @@ const quickFacts = [
                 </section>
               </div>
 
-              <div class="route-card__photos">
-                {spot.photos.map((photo) => (
-                  <figure>
-                    <img src={photo.image} alt={photo.alt} loading="lazy" />
-                    <figcaption>{photo.caption}</figcaption>
-                  </figure>
-                ))}
-              </div>
+              {spot.photos.length > 0 ? (
+                <div class="route-card__photos">
+                  {spot.photos.map((photo) => (
+                    <figure>
+                      <img src={photo.image} alt={photo.alt} loading="lazy" />
+                      <figcaption>{photo.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              ) : (
+                <div class="route-card__empty">
+                  这站先放完整攻略信息，后续如果你补拍了实景照片，也可以继续加进来。
+                </div>
+              )}
             </article>
           ))}
         </div>
       </div>
     </section>
 
+    <section class="section section-days" id="plan">
+      <div class="section-heading">
+        <p>按天安排行程</p>
+        <h2>哈尔滨三日游版本</h2>
+      </div>
+
+      <div class="days-grid">
+        {tripDays.map((day) => (
+          <article class="day-card">
+            <div class="day-card__head">
+              <p>{day.day}</p>
+              <h3>{day.title}</h3>
+            </div>
+            <p class="day-card__subtitle">{day.subtitle}</p>
+            <ul class="day-card__schedule">
+              {day.schedule.map((item) => <li>{item}</li>)}
+            </ul>
+            <p class="day-card__meta"><strong>吃什么：</strong>{day.food}</p>
+            <p class="day-card__meta"><strong>交通建议：</strong>{day.traffic}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section-picks" id="picks">
+      <div class="section-heading">
+        <p>按喜好换玩法</p>
+        <h2>哈尔滨与周边著名景点参考</h2>
+      </div>
+
+      <div class="picks-grid">
+        {nearbyPicks.map((spot) => (
+          <article class="pick-card">
+            <p class="pick-card__tag">{spot.tag}</p>
+            <h3>{spot.title}</h3>
+            <p class="pick-card__detail">{spot.detail}</p>
+            <p class="pick-card__tip">{spot.tip}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
     <section class="section" id="gallery">
       <div class="section-heading">
-        <p>图 1 - 图 8</p>
         <h2>完整相册</h2>
       </div>
 
       <div class="gallery-carousel" data-gallery-carousel>
-        <div class="gallery-carousel__topbar">
-          <p>左右滑动切换，点击图片查看大图</p>
-          <div class="gallery-carousel__controls">
-            <button type="button" class="gallery-carousel__button" data-gallery-prev aria-label="上一张">
-              上一张
-            </button>
-            <button type="button" class="gallery-carousel__button" data-gallery-next aria-label="下一张">
-              下一张
-            </button>
-          </div>
-        </div>
+        <p class="gallery-carousel__hint">左右滑动查看，点击图片可放大。</p>
 
         <div class="gallery-carousel__viewport" data-gallery-viewport>
           {gallery.map((item) => (
@@ -592,6 +931,102 @@ const quickFacts = [
     border: 1px solid var(--line);
   }
 
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .day-card {
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--line);
+  }
+
+  .day-card__head {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .day-card__head p {
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .day-card__head h3 {
+    margin: 0;
+    font-size: 1.32rem;
+  }
+
+  .day-card__subtitle,
+  .day-card__meta,
+  .day-card__schedule {
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .day-card__subtitle {
+    margin-bottom: 12px;
+  }
+
+  .day-card__schedule {
+    margin: 0 0 14px;
+    padding-left: 20px;
+  }
+
+  .day-card__meta {
+    margin: 0;
+  }
+
+  .day-card__meta + .day-card__meta {
+    margin-top: 8px;
+  }
+
+  .picks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .pick-card {
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--line);
+  }
+
+  .pick-card__tag {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: 0.84rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pick-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.18rem;
+  }
+
+  .pick-card__detail,
+  .pick-card__tip {
+    color: var(--muted);
+    line-height: 1.82;
+  }
+
+  .pick-card__detail {
+    margin-bottom: 12px;
+  }
+
+  .pick-card__tip {
+    margin: 0;
+  }
+
   .section-route {
     background:
       radial-gradient(circle at top right, rgba(157, 208, 232, 0.16), transparent 26%),
@@ -603,12 +1038,6 @@ const quickFacts = [
     display: grid;
     grid-template-columns: minmax(0, 1.03fr) minmax(340px, 0.97fr);
     gap: 20px;
-  }
-
-  .route-toggle {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
   }
 
   .route-map,
@@ -641,21 +1070,47 @@ const quickFacts = [
     font-size: 1.05rem;
   }
 
-  .route-map__image,
-  .route-map__overlay {
+  .route-map__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin-top: 4px;
+    color: rgba(81, 57, 40, 0.9);
+    font-size: 0.84rem;
+  }
+
+  .route-map__legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .route-map__legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.75);
+  }
+
+  .route-map__legend-dot--hotel {
+    background: linear-gradient(135deg, #4288d9, #24529a);
+  }
+
+  .route-map__legend-dot--day1 {
+    background: linear-gradient(135deg, #d96f42, #96371f);
+  }
+
+  .route-map__legend-dot--day2 {
+    background: linear-gradient(135deg, #5ca86d, #2c7b43);
+  }
+
+  .route-map__legend-dot--day3 {
+    background: linear-gradient(135deg, #3f9e9c, #1d676e);
+  }
+
+  .route-map__canvas {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .route-map__image {
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .route-map__overlay {
-    pointer-events: none;
   }
 
   .route-map__credit {
@@ -672,76 +1127,6 @@ const quickFacts = [
     line-height: 1.4;
   }
 
-  .map-pin {
-    position: absolute;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 160ms ease;
-    z-index: 3;
-  }
-
-  .map-pin:hover {
-    transform: translateY(-2px);
-  }
-
-  .map-pin__dot {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 52px;
-    height: 52px;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    background: linear-gradient(135deg, #d96f42, #96371f);
-    color: #fffaf4;
-    box-shadow: 0 14px 24px rgba(113, 47, 24, 0.28);
-    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
-  }
-
-  .map-pin__number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transform: rotate(45deg);
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .map-pin__text {
-    position: relative;
-    padding: 11px 14px;
-    border-radius: 999px;
-    background: rgba(255, 252, 247, 0.88);
-    border: 1px solid rgba(135, 88, 58, 0.15);
-    box-shadow: 0 10px 24px rgba(72, 45, 22, 0.08);
-    color: #513526;
-    font-size: 0.94rem;
-  }
-
-  .map-pin--sofia {
-    left: 86%;
-    top: 74%;
-  }
-
-  .map-pin--central {
-    left: 29%;
-    top: 26%;
-  }
-
-  .map-pin--river {
-    left: 19%;
-    top: 14%;
-  }
-
-  .map-pin--river .map-pin__text {
-    max-width: 172px;
-  }
-
   .route-panels {
     position: relative;
   }
@@ -750,6 +1135,10 @@ const quickFacts = [
     display: none;
     padding: 24px;
     height: 100%;
+  }
+
+  .route-card.is-active {
+    display: block;
   }
 
   .route-card__head {
@@ -828,74 +1217,31 @@ const quickFacts = [
     font-size: 0.92rem;
   }
 
-  #route-sofia:checked ~ .route-map .map-pin--sofia,
-  #route-central:checked ~ .route-map .map-pin--central,
-  #route-river:checked ~ .route-map .map-pin--river {
-    transform: translateY(-4px) scale(1.02);
-  }
-
-  #route-sofia:checked ~ .route-map .map-pin--sofia .map-pin__dot,
-  #route-central:checked ~ .route-map .map-pin--central .map-pin__dot,
-  #route-river:checked ~ .route-map .map-pin--river .map-pin__dot {
-    background: linear-gradient(135deg, #f18f58, #b94622);
-    box-shadow: 0 18px 28px rgba(113, 47, 24, 0.34);
-  }
-
-  #route-sofia:checked ~ .route-map .map-pin--sofia .map-pin__text,
-  #route-central:checked ~ .route-map .map-pin--central .map-pin__text,
-  #route-river:checked ~ .route-map .map-pin--river .map-pin__text {
-    background: #fff9f3;
-    border-color: rgba(201, 101, 56, 0.24);
-  }
-
-  #route-sofia:checked ~ .route-panels .route-card--sofia,
-  #route-central:checked ~ .route-panels .route-card--central,
-  #route-river:checked ~ .route-panels .route-card--river {
-    display: block;
+  .route-card__empty {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px dashed rgba(135, 88, 58, 0.18);
+    color: var(--muted);
+    line-height: 1.8;
   }
 
   .gallery-carousel {
     display: grid;
-    gap: 16px;
+    gap: 12px;
   }
 
-  .gallery-carousel__topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
+  .gallery-carousel__hint {
+    margin: 0;
     color: var(--muted);
   }
 
-  .gallery-carousel__topbar p {
-    margin: 0;
-  }
-
-  .gallery-carousel__controls {
-    display: flex;
-    gap: 10px;
-  }
-
-  .gallery-carousel__button,
   .gallery-slide__image-button,
   .gallery-lightbox__close {
     border: none;
     font: inherit;
     cursor: pointer;
-  }
-
-  .gallery-carousel__button {
-    padding: 10px 14px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.78);
-    border: 1px solid var(--line);
-    color: var(--ink);
-    transition: transform 160ms ease, background 160ms ease;
-  }
-
-  .gallery-carousel__button:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.98);
   }
 
   .gallery-carousel__viewport {
@@ -908,6 +1254,7 @@ const quickFacts = [
     scroll-snap-type: x mandatory;
     scrollbar-width: thin;
     scrollbar-color: rgba(140, 56, 34, 0.3) transparent;
+    cursor: grab;
   }
 
   .gallery-carousel__viewport::-webkit-scrollbar {
@@ -929,18 +1276,21 @@ const quickFacts = [
   }
 
   .gallery-slide__image-button {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    padding: 0;
-    background: transparent;
+    height: 360px;
+    padding: 18px;
+    background: linear-gradient(180deg, rgba(244, 236, 224, 0.8), rgba(240, 228, 214, 0.88));
   }
 
   .gallery-slide img {
-    width: 100%;
-    height: 380px;
-    object-fit: cover;
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
     object-position: center;
-    background: #e7ddd0;
     transition: transform 220ms ease;
   }
 
@@ -1013,6 +1363,81 @@ const quickFacts = [
     line-height: 1.8;
   }
 
+  :global(.leaflet-container) {
+    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  }
+
+  :global(.route-leaflet-pin) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: linear-gradient(135deg, #d96f42, #96371f);
+    box-shadow: 0 14px 24px rgba(113, 47, 24, 0.28);
+    color: #fffaf4;
+  }
+
+  :global(.route-leaflet-pin--hotel) {
+    width: 58px;
+    height: 38px;
+    border-radius: 999px;
+    transform: none;
+    background: linear-gradient(135deg, #4288d9, #24529a);
+    box-shadow: 0 14px 24px rgba(32, 73, 140, 0.28);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+  }
+
+  :global(.route-leaflet-pin--day2) {
+    background: linear-gradient(135deg, #5ca86d, #2c7b43);
+    box-shadow: 0 14px 24px rgba(42, 111, 61, 0.28);
+  }
+
+  :global(.route-leaflet-pin--day3) {
+    background: linear-gradient(135deg, #3f9e9c, #1d676e);
+    box-shadow: 0 14px 24px rgba(29, 103, 110, 0.28);
+  }
+
+  :global(.route-leaflet-pin span) {
+    transform: rotate(45deg);
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :global(.route-leaflet-pin--hotel span) {
+    transform: none;
+    font-size: 0.96rem;
+    letter-spacing: 0.08em;
+  }
+
+  :global(.route-map-popup) {
+    min-width: 180px;
+  }
+
+  :global(.route-map-popup h4) {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    color: #2d2218;
+  }
+
+  :global(.route-map-popup p) {
+    margin: 0 0 10px;
+    color: #6d5a49;
+    line-height: 1.7;
+    font-size: 0.9rem;
+  }
+
+  :global(.route-map-popup img) {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
   .footer {
     display: flex;
     justify-content: space-between;
@@ -1041,6 +1466,8 @@ const quickFacts = [
   @media (max-width: 980px) {
     .hero,
     .intro-grid,
+    .days-grid,
+    .picks-grid,
     .notes-grid {
       grid-template-columns: 1fr;
     }
@@ -1075,36 +1502,6 @@ const quickFacts = [
       padding: 14px;
     }
 
-    .map-pin {
-      gap: 6px;
-    }
-
-    .map-pin__dot {
-      width: 44px;
-      height: 44px;
-      font-size: 0.8rem;
-    }
-
-    .map-pin__text {
-      padding: 8px 11px;
-      font-size: 0.82rem;
-    }
-
-    .map-pin--sofia {
-      left: 78%;
-      top: 72%;
-    }
-
-    .map-pin--central {
-      left: 20%;
-      top: 25%;
-    }
-
-    .map-pin--river {
-      left: 10%;
-      top: 13%;
-    }
-
     .route-map__credit {
       left: 12px;
       right: auto;
@@ -1120,18 +1517,12 @@ const quickFacts = [
       grid-template-columns: 1fr;
     }
 
-    .gallery-carousel__topbar {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
     .gallery-carousel__viewport {
       grid-auto-columns: 86%;
     }
 
-    .gallery-slide img,
-    .route-card__photos img {
-      height: auto;
+    .gallery-slide__image-button {
+      height: 300px;
     }
 
     .footer {
@@ -1140,28 +1531,147 @@ const quickFacts = [
   }
 </style>
 
+<script define:vars={{ routeMapData, tiandituKey, dayOnePath }}>
+  window.addEventListener("load", () => {
+    if (!window.L) return;
+
+    const map = L.map("route-map-canvas", {
+      zoomControl: true,
+      scrollWheelZoom: false
+    }).setView([45.7722, 126.6278], 14);
+
+    L.tileLayer(
+      `https://t{s}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=${tiandituKey}`,
+      {
+        subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"],
+        maxZoom: 18,
+        attribution: "© 天地图"
+      }
+    ).addTo(map);
+
+    L.tileLayer(
+      `https://t{s}.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=${tiandituKey}`,
+      {
+        subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"],
+        maxZoom: 18
+      }
+    ).addTo(map);
+
+    const routeCards = Array.from(document.querySelectorAll("[data-route-card]"));
+    const activateRouteCard = (id) => {
+      routeCards.forEach((card) => {
+        card.classList.toggle("is-active", card.dataset.routeCard === id);
+      });
+    };
+
+    const bounds = [];
+    const markers = [];
+
+    routeMapData.forEach((spot) => {
+      bounds.push([spot.lat, spot.lng]);
+
+      const pinClass =
+        spot.type === "hotel"
+          ? "route-leaflet-pin route-leaflet-pin--hotel"
+          : spot.type === "day2"
+            ? "route-leaflet-pin route-leaflet-pin--day2"
+            : spot.type === "day3"
+              ? "route-leaflet-pin route-leaflet-pin--day3"
+            : "route-leaflet-pin";
+
+      const icon = L.divIcon({
+        className: "",
+        html: `<div class="${pinClass}"><span>${spot.order}</span></div>`,
+        iconSize: spot.type === "hotel" ? [58, 38] : [46, 46],
+        iconAnchor: spot.type === "hotel" ? [29, 19] : [16, 40],
+        popupAnchor: spot.type === "hotel" ? [0, -22] : [8, -32]
+      });
+
+      const popupImage = spot.image
+        ? `<img src="${spot.image}" alt="${spot.title}">`
+        : "";
+
+      const marker = L.marker([spot.lat, spot.lng], { icon })
+        .addTo(map)
+        .bindPopup(
+          `<div class="route-map-popup"><h4>${spot.title}</h4><p>${spot.summary}</p>${popupImage}</div>`
+        );
+
+      marker.on("click", () => {
+        activateRouteCard(spot.panelId ?? spot.id);
+      });
+
+      markers.push({ id: spot.id, marker });
+    });
+
+    L.polyline(
+      dayOnePath,
+      {
+        color: "#c96538",
+        weight: 4,
+        opacity: 0.75,
+        dashArray: "10 10"
+      }
+    ).addTo(map);
+
+    if (bounds.length > 0) {
+      map.fitBounds(bounds, { padding: [42, 42] });
+    }
+
+    activateRouteCard("sofia");
+
+    const defaultMarker = markers.find((item) => item.id === "sofia") ?? markers[0];
+    defaultMarker?.marker.openPopup();
+  });
+</script>
+
 <script>
   const carousel = document.querySelector("[data-gallery-carousel]");
   const viewport = carousel?.querySelector("[data-gallery-viewport]");
-  const prevButton = carousel?.querySelector("[data-gallery-prev]");
-  const nextButton = carousel?.querySelector("[data-gallery-next]");
-  const slides = viewport ? Array.from(viewport.children) : [];
   const lightbox = document.querySelector("[data-gallery-lightbox]");
   const lightboxImage = lightbox?.querySelector("[data-gallery-lightbox-image]");
   const lightboxTitle = lightbox?.querySelector("[data-gallery-lightbox-title]");
   const lightboxNote = lightbox?.querySelector("[data-gallery-lightbox-note]");
+  let isDragging = false;
+  let dragMoved = false;
+  let dragStartX = 0;
+  let dragStartScroll = 0;
 
-  const scrollBySlide = (direction) => {
-    if (!viewport || slides.length === 0) return;
-    const slideWidth = slides[0].getBoundingClientRect().width + 16;
-    viewport.scrollBy({ left: direction * slideWidth, behavior: "smooth" });
+  viewport?.addEventListener("pointerdown", (event) => {
+    isDragging = true;
+    dragMoved = false;
+    dragStartX = event.clientX;
+    dragStartScroll = viewport.scrollLeft;
+    viewport.setPointerCapture(event.pointerId);
+    viewport.style.cursor = "grabbing";
+  });
+
+  viewport?.addEventListener("pointermove", (event) => {
+    if (!isDragging) return;
+    const delta = event.clientX - dragStartX;
+    if (Math.abs(delta) > 8) dragMoved = true;
+    viewport.scrollLeft = dragStartScroll - delta;
+  });
+
+  const stopDragging = (event) => {
+    if (!viewport) return;
+    isDragging = false;
+    viewport.style.cursor = "grab";
+    if (event?.pointerId !== undefined && viewport.hasPointerCapture(event.pointerId)) {
+      viewport.releasePointerCapture(event.pointerId);
+    }
   };
 
-  prevButton?.addEventListener("click", () => scrollBySlide(-1));
-  nextButton?.addEventListener("click", () => scrollBySlide(1));
+  viewport?.addEventListener("pointerup", stopDragging);
+  viewport?.addEventListener("pointercancel", stopDragging);
+  viewport?.addEventListener("pointerleave", stopDragging);
 
   carousel?.querySelectorAll("[data-gallery-open]").forEach((button) => {
     button.addEventListener("click", () => {
+      if (dragMoved) {
+        dragMoved = false;
+        return;
+      }
       if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxNote) return;
       const source = button.getAttribute("data-image") ?? "";
       const alt = button.getAttribute("data-alt") ?? "";
