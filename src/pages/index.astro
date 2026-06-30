@@ -220,27 +220,6 @@ const quickFacts = [
       </aside>
     </section>
 
-    <section class="section section-intro">
-      <div class="section-heading">
-        <p>出发前先看</p>
-        <h2>这份攻略适合怎样玩哈尔滨</h2>
-      </div>
-      <div class="intro-grid">
-        <article>
-          <h3>路线风格</h3>
-          <p>
-            这不是赶景点式的一日游，而是一条适合慢慢走、慢慢拍的路线。三个点位都集中在很适合散步的区域里，城市地标、老街质感和江边日落都能兼顾到。
-          </p>
-        </article>
-        <article>
-          <h3>阅读方式</h3>
-          <p>
-            先看下面的地图版路线总览，点击地图钉就能切换不同景点的历史、推荐吃什么、拍照点位和对应照片。后面的完整相册则更适合你临出门前快速复习一遍机位。
-          </p>
-        </article>
-      </div>
-    </section>
-
     <section class="section section-route" id="route">
       <div class="section-heading">
         <p>点击地图钉切换</p>
@@ -254,69 +233,29 @@ const quickFacts = [
 
         <div class="route-map">
           <div class="route-map__header">
-            <strong>哈尔滨主城漫游示意图</strong>
-            <span>示意图按实际游览顺序标注，先教堂，再街区，最后去江边。</span>
+            <strong>哈尔滨主城区真实底图</strong>
+            <span>底图覆盖这次路线最核心的区域，点一下地图钉，就能切换对应景点的攻略内容。</span>
           </div>
 
-          <svg viewBox="0 0 900 620" aria-hidden="true" class="route-map__art">
-            <defs>
-              <linearGradient id="land" x1="0%" x2="100%" y1="0%" y2="100%">
-                <stop offset="0%" stop-color="#f8ecda" />
-                <stop offset="100%" stop-color="#f2e1cb" />
-              </linearGradient>
-              <linearGradient id="river" x1="0%" x2="100%" y1="0%" y2="0%">
-                <stop offset="0%" stop-color="#7bb6d8" />
-                <stop offset="100%" stop-color="#9ad5ef" />
-              </linearGradient>
-            </defs>
-
-            <rect x="0" y="0" width="900" height="620" rx="42" fill="url(#land)" />
+          <img
+            src="/maps/harbin-route-map.png"
+            alt="哈尔滨主城区真实地图底图，展示圣索菲亚教堂、中央大街和松花江防洪纪念塔一带"
+            class="route-map__image"
+            loading="lazy"
+          />
+          <svg viewBox="0 0 100 100" aria-hidden="true" class="route-map__overlay">
             <path
-              d="M-10 160 C120 120, 230 210, 360 184 S620 120, 760 160 S920 250, 940 212 L940 330 C820 372, 720 308, 580 336 S320 420, 172 368 S26 280, -10 300 Z"
-              fill="url(#river)"
-              opacity="0.96"
-            />
-            <path
-              d="M166 468 C280 410, 388 390, 484 398 S678 420, 772 360"
+              d="M21 15 C23 18, 26 21, 31 28 S62 56, 88 75"
               fill="none"
-              stroke="#d7b68b"
-              stroke-width="22"
+              stroke="rgba(201, 101, 56, 0.76)"
+              stroke-width="1.1"
               stroke-linecap="round"
-              stroke-dasharray="1 28"
-              opacity="0.55"
+              stroke-dasharray="0.5 2.2"
             />
-            <path
-              d="M494 448 C560 398, 594 352, 598 282"
-              fill="none"
-              stroke="#d7b68b"
-              stroke-width="16"
-              stroke-linecap="round"
-              stroke-dasharray="1 24"
-              opacity="0.45"
-            />
-            <path
-              d="M560 154 C596 196, 642 218, 696 220"
-              fill="none"
-              stroke="#ffffff"
-              stroke-width="8"
-              stroke-linecap="round"
-              opacity="0.65"
-            />
-            <path
-              d="M214 260 C264 292, 330 292, 382 264"
-              fill="none"
-              stroke="#ffffff"
-              stroke-width="8"
-              stroke-linecap="round"
-              opacity="0.45"
-            />
-            <text x="116" y="118" class="map-label">松北区</text>
-            <text x="250" y="284" class="map-label">松花江</text>
-            <text x="300" y="470" class="map-label">道里区</text>
-            <text x="562" y="474" class="map-label">南岗区</text>
-            <text x="104" y="548" class="map-sub">上午从索菲亚教堂出发</text>
-            <text x="576" y="88" class="map-sub">傍晚在江边等日落</text>
           </svg>
+          <p class="route-map__credit">
+            地图底图基于 OpenStreetMap 数据生成，© OpenStreetMap contributors
+          </p>
 
           <label class="map-pin map-pin--sofia" for="route-sofia">
             <span class="map-pin__dot"><span class="map-pin__number">01</span></span>
@@ -388,16 +327,41 @@ const quickFacts = [
         <h2>完整相册</h2>
       </div>
 
-      <div class="gallery-grid">
-        {gallery.map((item, index) => (
-          <figure class:list={["gallery-card", index === 5 ? "gallery-card--tall" : ""]}>
-            <img src={item.image} alt={item.alt} loading="lazy" />
-            <figcaption>
-              <strong>{item.title}</strong>
-              <p>{item.note}</p>
-            </figcaption>
-          </figure>
-        ))}
+      <div class="gallery-carousel" data-gallery-carousel>
+        <div class="gallery-carousel__topbar">
+          <p>左右滑动切换，点击图片查看大图</p>
+          <div class="gallery-carousel__controls">
+            <button type="button" class="gallery-carousel__button" data-gallery-prev aria-label="上一张">
+              上一张
+            </button>
+            <button type="button" class="gallery-carousel__button" data-gallery-next aria-label="下一张">
+              下一张
+            </button>
+          </div>
+        </div>
+
+        <div class="gallery-carousel__viewport" data-gallery-viewport>
+          {gallery.map((item) => (
+            <figure class="gallery-slide">
+              <button
+                type="button"
+                class="gallery-slide__image-button"
+                data-gallery-open
+                data-image={item.image}
+                data-alt={item.alt}
+                data-title={item.title}
+                data-note={item.note}
+                aria-label={`查看${item.title}大图`}
+              >
+                <img src={item.image} alt={item.alt} loading="lazy" />
+              </button>
+              <figcaption>
+                <strong>{item.title}</strong>
+                <p>{item.note}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -436,6 +400,19 @@ const quickFacts = [
       <a href="#top">回到顶部</a>
     </footer>
   </main>
+
+  <dialog class="gallery-lightbox" data-gallery-lightbox>
+    <button type="button" class="gallery-lightbox__close" data-gallery-close aria-label="关闭大图">
+      关闭
+    </button>
+    <div class="gallery-lightbox__content" data-gallery-close>
+      <img src="" alt="" data-gallery-lightbox-image />
+      <div class="gallery-lightbox__caption">
+        <strong data-gallery-lightbox-title></strong>
+        <p data-gallery-lightbox-note></p>
+      </div>
+    </div>
+  </dialog>
 </BaseLayout>
 
 <style>
@@ -664,26 +641,35 @@ const quickFacts = [
     font-size: 1.05rem;
   }
 
-  .route-map__art {
+  .route-map__image,
+  .route-map__overlay {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
   }
 
-  .map-label,
-  .map-sub {
-    fill: rgba(81, 57, 40, 0.78);
-    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  .route-map__image {
+    object-fit: cover;
+    object-position: center;
   }
 
-  .map-label {
-    font-size: 28px;
+  .route-map__overlay {
+    pointer-events: none;
   }
 
-  .map-sub {
-    font-size: 20px;
-    opacity: 0.8;
+  .route-map__credit {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
+    margin: 0;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(255, 252, 247, 0.84);
+    color: rgba(81, 57, 40, 0.9);
+    font-size: 0.74rem;
+    line-height: 1.4;
   }
 
   .map-pin {
@@ -738,18 +724,18 @@ const quickFacts = [
   }
 
   .map-pin--sofia {
-    left: 58%;
-    top: 67%;
+    left: 86%;
+    top: 74%;
   }
 
   .map-pin--central {
-    left: 42%;
-    top: 50%;
+    left: 29%;
+    top: 26%;
   }
 
   .map-pin--river {
-    left: 26%;
-    top: 25%;
+    left: 19%;
+    top: 14%;
   }
 
   .map-pin--river .map-pin__text {
@@ -868,29 +854,98 @@ const quickFacts = [
     display: block;
   }
 
-  .gallery-grid {
+  .gallery-carousel {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 16px;
   }
 
-  .gallery-card {
+  .gallery-carousel__topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    color: var(--muted);
+  }
+
+  .gallery-carousel__topbar p {
+    margin: 0;
+  }
+
+  .gallery-carousel__controls {
+    display: flex;
+    gap: 10px;
+  }
+
+  .gallery-carousel__button,
+  .gallery-slide__image-button,
+  .gallery-lightbox__close {
+    border: none;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .gallery-carousel__button {
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    transition: transform 160ms ease, background 160ms ease;
+  }
+
+  .gallery-carousel__button:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  .gallery-carousel__viewport {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 28%);
+    gap: 16px;
+    overflow-x: auto;
+    padding: 4px 4px 14px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(140, 56, 34, 0.3) transparent;
+  }
+
+  .gallery-carousel__viewport::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .gallery-carousel__viewport::-webkit-scrollbar-thumb {
+    background: rgba(140, 56, 34, 0.25);
+    border-radius: 999px;
+  }
+
+  .gallery-slide {
+    scroll-snap-align: start;
     overflow: hidden;
     border-radius: var(--radius-lg);
     background: rgba(255, 255, 255, 0.62);
     border: 1px solid var(--line);
+    margin: 0;
   }
 
-  .gallery-card img {
+  .gallery-slide__image-button {
+    display: block;
     width: 100%;
-    height: 520px;
+    padding: 0;
+    background: transparent;
+  }
+
+  .gallery-slide img {
+    width: 100%;
+    height: 380px;
     object-fit: cover;
     object-position: center;
     background: #e7ddd0;
+    transition: transform 220ms ease;
   }
 
-  .gallery-card--tall img {
-    height: 720px;
+  .gallery-slide__image-button:hover img {
+    transform: scale(1.025);
   }
 
   figcaption {
@@ -901,6 +956,61 @@ const quickFacts = [
     display: inline-block;
     margin-bottom: 8px;
     font-size: 1.02rem;
+  }
+
+  .gallery-lightbox {
+    width: min(92vw, 1100px);
+    max-width: 1100px;
+    padding: 18px;
+    border: none;
+    border-radius: 28px;
+    background: rgba(26, 19, 13, 0.84);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.38);
+  }
+
+  .gallery-lightbox::backdrop {
+    background: rgba(18, 13, 10, 0.7);
+    backdrop-filter: blur(8px);
+  }
+
+  .gallery-lightbox__close {
+    display: inline-flex;
+    margin-left: auto;
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 250, 244, 0.92);
+    color: var(--ink);
+  }
+
+  .gallery-lightbox__content {
+    display: grid;
+    gap: 14px;
+  }
+
+  .gallery-lightbox__content img {
+    width: 100%;
+    max-height: 76vh;
+    object-fit: contain;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .gallery-lightbox__caption {
+    padding: 0 6px 4px;
+    color: #fff4e8;
+  }
+
+  .gallery-lightbox__caption strong {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 1.06rem;
+  }
+
+  .gallery-lightbox__caption p {
+    margin: 0;
+    color: rgba(255, 244, 232, 0.84);
+    line-height: 1.8;
   }
 
   .footer {
@@ -922,12 +1032,21 @@ const quickFacts = [
     }
   }
 
+  @media (max-width: 1200px) {
+    .gallery-carousel__viewport {
+      grid-auto-columns: minmax(260px, 34%);
+    }
+  }
+
   @media (max-width: 980px) {
     .hero,
     .intro-grid,
-    .notes-grid,
-    .gallery-grid {
+    .notes-grid {
       grid-template-columns: 1fr;
+    }
+
+    .gallery-carousel__viewport {
+      grid-auto-columns: minmax(240px, 48%);
     }
   }
 
@@ -956,14 +1075,6 @@ const quickFacts = [
       padding: 14px;
     }
 
-    .map-label {
-      font-size: 22px;
-    }
-
-    .map-sub {
-      font-size: 16px;
-    }
-
     .map-pin {
       gap: 6px;
     }
@@ -980,18 +1091,25 @@ const quickFacts = [
     }
 
     .map-pin--sofia {
-      left: 50%;
-      top: 66%;
+      left: 78%;
+      top: 72%;
     }
 
     .map-pin--central {
-      left: 30%;
-      top: 49%;
+      left: 20%;
+      top: 25%;
     }
 
     .map-pin--river {
-      left: 14%;
-      top: 23%;
+      left: 10%;
+      top: 13%;
+    }
+
+    .route-map__credit {
+      left: 12px;
+      right: auto;
+      bottom: 10px;
+      max-width: calc(100% - 24px);
     }
 
     .route-card {
@@ -1002,9 +1120,17 @@ const quickFacts = [
       grid-template-columns: 1fr;
     }
 
-    .route-card__photos img,
-    .gallery-card img,
-    .gallery-card--tall img {
+    .gallery-carousel__topbar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .gallery-carousel__viewport {
+      grid-auto-columns: 86%;
+    }
+
+    .gallery-slide img,
+    .route-card__photos img {
       height: auto;
     }
 
@@ -1013,3 +1139,52 @@ const quickFacts = [
     }
   }
 </style>
+
+<script>
+  const carousel = document.querySelector("[data-gallery-carousel]");
+  const viewport = carousel?.querySelector("[data-gallery-viewport]");
+  const prevButton = carousel?.querySelector("[data-gallery-prev]");
+  const nextButton = carousel?.querySelector("[data-gallery-next]");
+  const slides = viewport ? Array.from(viewport.children) : [];
+  const lightbox = document.querySelector("[data-gallery-lightbox]");
+  const lightboxImage = lightbox?.querySelector("[data-gallery-lightbox-image]");
+  const lightboxTitle = lightbox?.querySelector("[data-gallery-lightbox-title]");
+  const lightboxNote = lightbox?.querySelector("[data-gallery-lightbox-note]");
+
+  const scrollBySlide = (direction) => {
+    if (!viewport || slides.length === 0) return;
+    const slideWidth = slides[0].getBoundingClientRect().width + 16;
+    viewport.scrollBy({ left: direction * slideWidth, behavior: "smooth" });
+  };
+
+  prevButton?.addEventListener("click", () => scrollBySlide(-1));
+  nextButton?.addEventListener("click", () => scrollBySlide(1));
+
+  carousel?.querySelectorAll("[data-gallery-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxNote) return;
+      const source = button.getAttribute("data-image") ?? "";
+      const alt = button.getAttribute("data-alt") ?? "";
+      const title = button.getAttribute("data-title") ?? "";
+      const note = button.getAttribute("data-note") ?? "";
+
+      lightboxImage.setAttribute("src", source);
+      lightboxImage.setAttribute("alt", alt);
+      lightboxTitle.textContent = title;
+      lightboxNote.textContent = note;
+      lightbox.showModal();
+    });
+  });
+
+  lightbox?.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (target.matches("[data-gallery-close]")) {
+      lightbox.close();
+    }
+  });
+
+  lightbox?.addEventListener("cancel", () => {
+    lightbox.close();
+  });
+</script>
