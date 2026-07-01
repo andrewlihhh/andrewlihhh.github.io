@@ -592,8 +592,6 @@ const dayOnePath = [
       <div class="route-explorer">
         <div class="route-map">
           <div class="route-map__header">
-            <strong>哈尔滨真实地图路线</strong>
-            <span>蓝色是酒店据点，橙色是 Day 1 老城线，绿色是 Day 2 江北线，青绿色是 Day 3 近郊 / 人文线；现在所有地图钉都能点击，右侧会切换到对应详情页。</span>
             <div class="route-map__legend">
               <span><i class="route-map__legend-dot route-map__legend-dot--hotel"></i>酒店据点</span>
               <span><i class="route-map__legend-dot route-map__legend-dot--day1"></i>Day 1 老城</span>
@@ -1265,28 +1263,26 @@ const dayOnePath = [
   }
 
   .route-map__header {
-    position: relative;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     z-index: 1;
     display: grid;
-    gap: 6px;
-    max-width: 390px;
-    padding: 18px;
-    border-radius: 16px;
+    gap: 4px;
+    max-width: 300px;
+    padding: 12px 14px;
+    border-radius: 14px;
     background: rgba(255, 255, 255, 0.94);
     box-shadow: 0 10px 28px rgba(34, 34, 34, 0.08);
-  }
-
-  .route-map__header strong {
-    font-size: 1.05rem;
   }
 
   .route-map__legend {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 14px;
-    margin-top: 4px;
+    gap: 8px 12px;
+    margin-top: 0;
     color: var(--muted-soft);
-    font-size: 0.84rem;
+    font-size: 0.76rem;
   }
 
   .route-map__legend span {
@@ -1660,27 +1656,29 @@ const dayOnePath = [
   }
 
   :global(.route-map-popup) {
-    min-width: 180px;
+    min-width: 0;
+    width: 158px;
   }
 
   :global(.route-map-popup h4) {
-    margin: 0 0 8px;
-    font-size: 1rem;
+    margin: 0 0 6px;
+    font-size: 0.88rem;
     color: #2d2218;
+    line-height: 1.35;
   }
 
   :global(.route-map-popup p) {
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     color: #6d5a49;
-    line-height: 1.7;
-    font-size: 0.9rem;
+    line-height: 1.55;
+    font-size: 0.78rem;
   }
 
   :global(.route-map-popup img) {
     width: 100%;
-    height: 110px;
+    height: 84px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 10px;
   }
 
   .footer {
@@ -1761,7 +1759,9 @@ const dayOnePath = [
     }
 
     .route-map__header {
-      max-width: 100%;
+      top: 12px;
+      right: 12px;
+      max-width: calc(100% - 24px);
       padding: 14px;
     }
 
