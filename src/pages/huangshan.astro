@@ -5,44 +5,360 @@ const title = "专属黄山旅游攻略";
 const description =
   "一份适合第一次去黄山的三日旅游攻略，按住山上一晚的节奏串起云谷索道、光明顶、西海大峡谷、迎客松、宏村、西递和屯溪老街。";
 
-const gallery = [
+const externalImages = {
+  huangshanCliffs:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Huangshan_pic_4.jpg/960px-Huangshan_pic_4.jpg",
+  hongcunHeritage:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yixian_Hongcun_2016.09.09_18-17-55.jpg/960px-Yixian_Hongcun_2016.09.09_18-17-55.jpg",
+  hongcunMoonPond:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/HongCun_AnHui.JPG/960px-HongCun_AnHui.JPG",
+  hongcunGate:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Gate_of_Hongcun_Scenario_Area%2C_Anhui%2C_China.jpg/960px-Gate_of_Hongcun_Scenario_Area%2C_Anhui%2C_China.jpg",
+  xidiArch:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Xidi1024x1360.jpg/960px-Xidi1024x1360.jpg",
+  xidiLane:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Xidi_-_05.JPG/960px-Xidi_-_05.JPG",
+  xidiJingaiHall:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Xidi-%E6%95%AC%E7%88%B1%E5%A0%82_20141110.JPG/960px-Xidi-%E6%95%AC%E7%88%B1%E5%A0%82_20141110.JPG",
+  xidiYingfutang:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Xidi-%E8%86%BA%E7%A6%8F%E5%A0%82_20141110.JPG/960px-Xidi-%E8%86%BA%E7%A6%8F%E5%A0%82_20141110.JPG",
+  xidiCanal:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Xidi_20141110.JPG/960px-Xidi_20141110.JPG",
+  xixinanStreet:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/%E8%A5%BF%E6%BA%AA%E5%8D%97%E9%95%87%E8%A1%97%E9%81%93%E4%B8%80%E6%99%AF.jpg/960px-%E8%A5%BF%E6%BA%AA%E5%8D%97%E9%95%87%E8%A1%97%E9%81%93%E4%B8%80%E6%99%AF.jpg",
+  chengkanVillage:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/%E5%91%88%E5%9D%8E.jpg/960px-%E5%91%88%E5%9D%8E.jpg",
+  chengkanBridge:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/%E7%8E%AF%E7%A7%80%E6%A1%A5.jpg/960px-%E7%8E%AF%E7%A7%80%E6%A1%A5.jpg",
+  chengkanShrine:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Chengkan_2010.11.27_16-10-30.jpg/960px-Chengkan_2010.11.27_16-10-30.jpg",
+  chengkanDashe:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chengkan_2010.11.27_16-36-31.jpg/960px-Chengkan_2010.11.27_16-36-31.jpg",
+  tunxiMuseum:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Loukjie1.jpg/960px-Loukjie1.jpg",
+  daizhenMemorial:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Daizhen.jpg/960px-Daizhen.jpg",
+  huKaiwen:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hukaiwen.jpg/960px-Hukaiwen.jpg",
+  oldStreetRestaurant:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Loujiediyilou.jpg/960px-Loujiediyilou.jpg",
+  fermentedMandarinFish:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Fermented_mandarin_fish.jpg/960px-Fermented_mandarin_fish.jpg",
+  xuXiakePortrait:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Xu_Xiake.png/640px-Xu_Xiake.png",
+  xuXiakeMap:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Travels_of_Xu_Xiake.png/960px-Travels_of_Xu_Xiake.png",
+  shitaoPainting:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Shitao02.jpg/960px-Shitao02.jpg"
+};
+
+const featureGallery = [
   {
     image: "/images/huangshan-guide-01.jpg",
     alt: "黄山山景全景图",
-    title: "图 1",
+    title: "黄山云海山脊",
     note: "黄山真正让人记住的，是这种层层展开的山体和云气。"
   },
   {
     image: "/images/huangshan-guide-02.jpg",
     alt: "黄山松景图",
-    title: "图 2",
+    title: "黄山松石",
     note: "松和石一起出现的时候，黄山的识别度会非常强。"
   },
   {
     image: "/images/huangshan-guide-03.jpg",
     alt: "宏村全景图",
-    title: "图 3",
+    title: "宏村倒影",
     note: "下山后把宏村接进来，整趟旅行就不只是山景。"
   },
   {
     image: "/images/huangshan-guide-04.jpg",
     alt: "西递古村图",
-    title: "图 4",
+    title: "西递古村",
     note: "西递更安静，也更适合慢慢看建筑细节。"
   },
   {
     image: "/images/huangshan-guide-05.jpg",
     alt: "屯溪老街牌坊图",
-    title: "图 5",
+    title: "屯溪老街",
     note: "屯溪老街很适合作为黄山这趟路线的轻松收尾。"
   },
   {
     image: "/images/huangshan-guide-06.jpg",
     alt: "宏村街巷图",
-    title: "图 6",
+    title: "宏村街巷",
     note: "古村真正耐看的，常常是巷子里的生活感。"
+  },
+  {
+    image: externalImages.huangshanCliffs,
+    alt: "黄山山峰群与崖壁风景",
+    title: "山峰群像",
+    note: "这类山峰和峭壁的组合，是很多人第一次看见黄山时最直接的震撼感。"
+  },
+  {
+    image: externalImages.hongcunHeritage,
+    alt: "宏村与山体倒影景观",
+    title: "宏村遗产视角",
+    note: "宏村的山、树、屋与水经常会一起进入画面，这也是它比普通古村更完整的地方。"
+  },
+  {
+    image: externalImages.hongcunMoonPond,
+    alt: "宏村月沼水面与徽派民居",
+    title: "月沼水面",
+    note: "如果你想拍出宏村最经典的识别度，月沼几乎是绕不过去的一处镜面空间。"
+  },
+  {
+    image: externalImages.hongcunGate,
+    alt: "宏村景区入口建筑",
+    title: "宏村入口",
+    note: "不是每个人都爱拍古村正门，但入口往往能留下“我真的到了”的旅行感。"
+  },
+  {
+    image: externalImages.xidiArch,
+    alt: "西递胡文光刺史牌坊",
+    title: "西递牌坊",
+    note: "西递最容易让人一下记住的，不是热闹，而是牌坊和门楼的秩序感。"
+  },
+  {
+    image: externalImages.xidiLane,
+    alt: "西递古巷与白墙黛瓦",
+    title: "西递深巷",
+    note: "如果你喜欢慢慢看建筑和路面关系，西递的巷子通常比广场更耐看。"
+  },
+  {
+    image: externalImages.xidiJingaiHall,
+    alt: "西递敬爱堂内部空间",
+    title: "敬爱堂",
+    note: "敬爱堂这一类宗祠空间，能让西递从“好看古村”变成更具体的徽州宗族生活现场。"
+  },
+  {
+    image: externalImages.xidiYingfutang,
+    alt: "西递膺福堂内部陈设",
+    title: "膺福堂",
+    note: "如果你对徽派民居内部空间有兴趣，像膺福堂这样的厅堂比外立面更能看出生活痕迹。"
+  },
+  {
+    image: externalImages.xidiCanal,
+    alt: "西递沿溪石板巷道",
+    title: "沿溪石巷",
+    note: "沿溪流走的老巷道，会让西递的“桃花源里人家”感受变得更具体。"
+  },
+  {
+    image: externalImages.chengkanVillage,
+    alt: "呈坎村整体俯瞰风景",
+    title: "呈坎全景",
+    note: "呈坎更偏“格局型古村”，适合喜欢研究村落布局和风水选址的人。"
+  },
+  {
+    image: externalImages.chengkanBridge,
+    alt: "呈坎环秀桥与水系景观",
+    title: "环秀桥",
+    note: "桥、水、祠堂和村落关系，是呈坎比一般古村更有研究感的原因之一。"
+  },
+  {
+    image: externalImages.chengkanShrine,
+    alt: "呈坎罗东舒祠寝殿与宝纶阁",
+    title: "罗东舒祠",
+    note: "如果你喜欢看祠堂与礼制建筑，呈坎会比宏村、西递更能满足这类兴趣。"
+  },
+  {
+    image: externalImages.chengkanDashe,
+    alt: "呈坎长春大社建筑",
+    title: "长春大社",
+    note: "这类建筑会提醒你，黄山周边古村并不只是民居，它们还有完整的公共空间系统。"
+  },
+  {
+    image: externalImages.xixinanStreet,
+    alt: "西溪南村水渠与老街景观",
+    title: "西溪南慢逛",
+    note: "西溪南不是那种必须打卡的大景点，但很适合把第三天过得更松一点。"
+  },
+  {
+    image: externalImages.fermentedMandarinFish,
+    alt: "徽州特色菜臭鳜鱼",
+    title: "臭鳜鱼",
+    note: "臭鳜鱼是黄山一带辨识度最高的代表菜之一，闻起来重，吃起来却很鲜。"
+  },
+  {
+    image: externalImages.daizhenMemorial,
+    alt: "屯溪老街戴震纪念馆外景",
+    title: "戴震纪念馆",
+    note: "如果你想让黄山旅行不只停在风景，屯溪老街里的文化纪念空间很值得补一眼。"
+  },
+  {
+    image: externalImages.tunxiMuseum,
+    alt: "屯溪老街博物馆建筑外景",
+    title: "老街博物馆",
+    note: "老街博物馆这类点位适合在逛街间隙补一段背景，帮你把老街从“好逛”变成“看得懂一点”。"
+  },
+  {
+    image: externalImages.huKaiwen,
+    alt: "屯溪老街胡开文店铺外景",
+    title: "胡开文",
+    note: "徽墨、纸砚、老店招牌这些东西，会把屯溪从游客街区重新拉回徽州文化脉络里。"
+  },
+  {
+    image: externalImages.oldStreetRestaurant,
+    alt: "屯溪老街老字号餐厅外立面",
+    title: "老街第一楼",
+    note: "不一定非得在这里吃，但这类老字号门面很适合补足屯溪老街的老派城市气质。"
+  },
+  {
+    image: externalImages.xuXiakePortrait,
+    alt: "徐霞客画像",
+    title: "徐霞客画像",
+    note: "提黄山很难绕开徐霞客，他留下的句子几乎定义了很多人心里的黄山。"
+  },
+  {
+    image: externalImages.shitaoPainting,
+    alt: "石涛绘制的黄山图",
+    title: "石涛黄山图",
+    note: "黄山不是只有眼前的风景，它也一直活在画里和文人笔下。"
+  },
+  {
+    image: externalImages.xuXiakeMap,
+    alt: "徐霞客旅行路线图",
+    title: "徐霞客足迹",
+    note: "把黄山放进徐霞客整个旅行版图里看，会更容易理解它为什么会留下那句评价。"
   }
 ];
+
+const supplementalGallery = [
+  {
+    image: "/images/huangshan-guide-07.jpg",
+    alt: "黄山群峰远景",
+    title: "黄山远眺 01",
+    note: "这一类远景最适合帮助第一次去黄山的人建立整体山体印象。"
+  },
+  {
+    image: "/images/huangshan-guide-08.jpg",
+    alt: "黄山山峰与云层景观",
+    title: "黄山远眺 02",
+    note: "山峰和云层一起出现时，黄山那种不稳定的天气美感会特别明显。"
+  },
+  {
+    image: "/images/huangshan-guide-09.jpg",
+    alt: "黄山崖壁与峰林景观",
+    title: "黄山远眺 03",
+    note: "很多人记住黄山，不是因为某一个点，而是这种一层层推出去的峰林关系。"
+  },
+  {
+    image: "/images/huangshan-guide-10.jpg",
+    alt: "黄山高处山脊与远山",
+    title: "黄山远眺 04",
+    note: "如果天气开得够透，高处山脊线会把整座山的尺度感全部拉出来。"
+  },
+  {
+    image: "/images/huangshan-guide-11.jpg",
+    alt: "黄山悬崖与云海景观",
+    title: "黄山远眺 05",
+    note: "悬崖、松和云海，是黄山最典型也最不容易过时的视觉组合。"
+  },
+  {
+    image: "/images/huangshan-guide-12.jpg",
+    alt: "黄山山谷云雾景观",
+    title: "黄山远眺 06",
+    note: "遇到雾气流动的时候，黄山会比大晴天更有层次，也更适合慢慢等。"
+  },
+  {
+    image: "/images/huangshan-guide-13.jpg",
+    alt: "黄山山体与植被层次",
+    title: "黄山远眺 07",
+    note: "把植被、石壁和峰线一起看，会更容易理解黄山为什么总被画进山水画里。"
+  },
+  {
+    image: "/images/huangshan-guide-14.jpg",
+    alt: "黄山高处云海翻涌景观",
+    title: "黄山远眺 08",
+    note: "云海不是每天都有，但一旦碰上，整趟黄山的情绪值会直接拉满。"
+  },
+  {
+    image: "/images/huangshan-guide-15.jpg",
+    alt: "黄山峰林与天空景观",
+    title: "黄山远眺 09",
+    note: "黄山真正耐看的地方，在于不同角度下峰林关系会一直变。"
+  },
+  {
+    image: "/images/huangshan-guide-16.jpg",
+    alt: "黄山山脊与崖壁全景",
+    title: "黄山远眺 10",
+    note: "如果你喜欢拍大场景，这类全景非常适合拿来做整趟旅行的主视觉。"
+  },
+  {
+    image: "/images/huangshan-guide-17.jpg",
+    alt: "宏村古建筑与巷道景观",
+    title: "宏村细节 01",
+    note: "宏村不只有南湖和月沼，真正耐看的常常是走进村子之后的屋檐和巷道。"
+  },
+  {
+    image: "/images/huangshan-guide-18.jpg",
+    alt: "宏村徽派民居与街巷",
+    title: "宏村细节 02",
+    note: "如果想拍到生活感，这类街巷细节通常比大合影式机位更有味道。"
+  },
+  {
+    image: "/images/huangshan-guide-19.jpg",
+    alt: "宏村古村建筑细部",
+    title: "宏村细节 03",
+    note: "从门窗、檐角和墙面去看宏村，会比只拍水面更完整。"
+  },
+  {
+    image: "/images/huangshan-guide-20.jpg",
+    alt: "宏村村内巷道与建筑",
+    title: "宏村细节 04",
+    note: "宏村最适合做的事不是赶，而是慢慢走到景色自己出来。"
+  },
+  {
+    image: "/images/huangshan-guide-21.jpg",
+    alt: "宏村白墙黛瓦与日常空间",
+    title: "宏村细节 05",
+    note: "徽派古村真正迷人的地方，往往是白墙黛瓦和生活空间叠在一起。"
+  },
+  {
+    image: "/images/huangshan-guide-22.jpg",
+    alt: "宏村村落空间与古建筑",
+    title: "宏村细节 06",
+    note: "这一类画面会把宏村从游客视角重新拉回村落视角。"
+  },
+  {
+    image: "/images/huangshan-guide-23.jpg",
+    alt: "宏村湖面与古村全景",
+    title: "宏村细节 07",
+    note: "如果你只留一张宏村的大场景，最好还是给湖面、树和民居一个完整同框。"
+  },
+  {
+    image: "/images/huangshan-guide-24.jpg",
+    alt: "西递古村街巷与牌坊景观",
+    title: "西递细节 01",
+    note: "西递比宏村更偏建筑秩序和空间层次，适合不喜欢太热闹古村的人。"
+  },
+  {
+    image: "/images/huangshan-guide-25.jpg",
+    alt: "西递古建筑外立面",
+    title: "西递细节 02",
+    note: "如果你对门楼、马头墙和旧宅外立面感兴趣，西递会特别好拍。"
+  },
+  {
+    image: "/images/huangshan-guide-26.jpg",
+    alt: "西递村内民居与街道",
+    title: "西递细节 03",
+    note: "西递适合把速度降下来，从建筑比例和街巷光影里找照片。"
+  },
+  {
+    image: "/images/huangshan-guide-27.jpg",
+    alt: "西递古巷深处建筑景观",
+    title: "西递细节 04",
+    note: "越往巷子里走，越能看出西递那种比宏村更克制的气质。"
+  },
+  {
+    image: "/images/huangshan-guide-28.jpg",
+    alt: "宏村南湖与古村景观",
+    title: "宏村南湖",
+    note: "南湖是宏村另一处非常稳的大景观，适合用来给第二天的古村线做收尾。"
+  }
+];
+
+const gallery = [...featureGallery, ...supplementalGallery];
 
 const routeSpots = [
   {
@@ -252,6 +568,11 @@ const dayTwoSpots = [
         caption: "宏村适合把脚步慢下来，景色会自己长出来。"
       },
       {
+        image: externalImages.hongcunMoonPond,
+        alt: "宏村月沼水面与白墙倒影",
+        caption: "月沼是宏村最经典的镜面空间，也是很多人第一眼会记住的宏村。"
+      },
+      {
         image: "/images/huangshan-guide-06.jpg",
         alt: "宏村街巷图",
         caption: "如果不赶路，宏村的巷子比正门更耐看。"
@@ -291,6 +612,11 @@ const dayThreeSpots = [
         image: "/images/huangshan-guide-04.jpg",
         alt: "西递古村图",
         caption: "西递的好看，不是热闹，是层层叠叠的细节。"
+      },
+      {
+        image: externalImages.xidiArch,
+        alt: "西递胡文光刺史牌坊",
+        caption: "如果你喜欢牌坊和门楼，西递会比宏村更对胃口。"
       }
     ]
   },
@@ -324,6 +650,16 @@ const dayThreeSpots = [
         image: "/images/huangshan-guide-05.jpg",
         alt: "屯溪老街牌坊图",
         caption: "屯溪老街很适合拿来给黄山这趟旅行做收尾。"
+      },
+      {
+        image: externalImages.daizhenMemorial,
+        alt: "屯溪老街戴震纪念馆",
+        caption: "老街里不只是逛吃，像戴震纪念馆这样的点也很适合补一段文化线。"
+      },
+      {
+        image: externalImages.huKaiwen,
+        alt: "屯溪老街胡开文店铺",
+        caption: "胡开文这类老字号会把屯溪老街的徽州气质一下拉出来。"
       }
     ]
   },
@@ -465,6 +801,51 @@ const nearbyPicks = [
     detail:
       "如果你到得早，或者第二天山上天气不理想，翡翠谷是常见的轻量替换玩法。它更偏山谷、水色和近距离散步，不需要像黄山主线那样拼体力。",
     tip: "适合和汤口镇据点一起安排成半天版本，尤其适合不想连续两天都走高强度山路的人。"
+  },
+  {
+    title: "臭鳜鱼",
+    tag: "黄山味道 / 可吃",
+    image: externalImages.fermentedMandarinFish,
+    alt: "徽州臭鳜鱼成菜图",
+    detail:
+      "如果你想在黄山只选一道最有地方辨识度的菜，臭鳜鱼通常会排在前面。它不是猪肉菜，适合你现在这套饮食限制，但味道会比较重，适合在屯溪或宏村找靠谱馆子认真吃一次。",
+    tip: "推荐认真尝一次；如果你本身怕发酵味，可以先点小份或多人分食。"
+  },
+  {
+    title: "徐霞客",
+    tag: "黄山人物 / 历史线",
+    image: externalImages.xuXiakePortrait,
+    alt: "徐霞客画像",
+    detail:
+      "黄山的人文线里，徐霞客几乎是绕不过去的人物。他两次登临黄山，留下“黄山归来不看岳”的名句，后来也几乎成了很多游客理解黄山的第一层入口。",
+    tip: "如果你喜欢把风景和文字连起来看，可以把徐霞客当成整趟旅行的人文引线。"
+  },
+  {
+    title: "石涛与黄山图",
+    tag: "黄山艺术 / 文化线",
+    image: externalImages.shitaoPainting,
+    alt: "石涛绘制的黄山图",
+    detail:
+      "黄山不仅是旅游目的地，也是山水绘画传统里非常重要的母题。石涛所画的黄山图，会让你意识到很多人看黄山，不只是看景，而是在看一种被反复描绘过的中国山水想象。",
+    tip: "如果你在屯溪老街看到徽墨、文房店和版画，不妨把这张画和现实风景连起来看。"
+  },
+  {
+    title: "戴震纪念馆",
+    tag: "屯溪人文补充",
+    image: externalImages.daizhenMemorial,
+    alt: "屯溪老街戴震纪念馆",
+    detail:
+      "如果你不想让屯溪老街只剩下逛吃，戴震纪念馆会是很好的补充。它能让你在老街里看到更明确的徽州学术与人物线索，而不只是商业街表层。",
+    tip: "适合安排在屯溪老街慢逛过程中顺手进去看，不需要单独占很长时间。"
+  },
+  {
+    title: "胡开文与徽墨",
+    tag: "老字号 / 手工艺线",
+    image: externalImages.huKaiwen,
+    alt: "胡开文徽墨老店",
+    detail:
+      "屯溪老街里最容易被低估的，其实是这些老字号和工艺脉络。胡开文这种名字，会把黄山旅行从风景和古村，再往徽墨、书写和徽州商号传统上拉一层。",
+    tip: "不一定非要购物，但店招、陈设和气质本身就很适合当作一段老街细节来拍。"
   },
   {
     title: "黎阳 in 巷",
@@ -695,7 +1076,7 @@ const dayOnePath = [
     <section class="section section-picks" id="picks">
       <div class="section-heading">
         <p>按喜好换玩法</p>
-        <h2>黄山与周边著名景点参考</h2>
+        <h2>黄山风景、味道与人文参考</h2>
       </div>
 
       <div class="picks-grid">
