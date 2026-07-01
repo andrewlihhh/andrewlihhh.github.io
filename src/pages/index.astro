@@ -451,6 +451,8 @@ const nearbyPicks = [
   {
     title: "太阳岛风景区",
     tag: "Day 2 主线",
+    image: "/images/pick-sunisland.png",
+    alt: "太阳岛风景区景观图",
     detail:
       "哈尔滨市政府旅游景点公开页把太阳岛列为核心景点之一，适合白天慢逛，树荫、水岸和湿地视野会比老城更舒展。",
     tip: "建议预留半天到大半天，穿舒服一点，顺着步道慢慢走更值。"
@@ -458,6 +460,8 @@ const nearbyPicks = [
   {
     title: "哈尔滨极地公园",
     tag: "Day 2 主线",
+    image: "/images/pick-polarland.png",
+    alt: "哈尔滨极地公园景观图",
     detail:
       "官方介绍强调这里位于太阳岛片区，主打极地主题表演、动物互动体验和科普内容，和太阳岛非常适合串成同一天。",
     tip: "更适合亲子、情侣或者想补足互动体验的人。"
@@ -465,6 +469,8 @@ const nearbyPicks = [
   {
     title: "东北虎林园",
     tag: "Day 2 替换项",
+    image: "/images/pick-tiger.png",
+    alt: "东北虎林园景观图",
     detail:
       "哈尔滨市政府旅游景点页把东北虎林园列为重点景点，如果你比起馆内演出更想看猛兽主题，这一站会更对味。",
     tip: "适合作为极地公园的替换项，不建议和太多点位硬塞在一天里。"
@@ -472,6 +478,8 @@ const nearbyPicks = [
   {
     title: "伏尔加庄园",
     tag: "Day 3 主线",
+    image: "/images/pick-volga.png",
+    alt: "伏尔加庄园景观图",
     detail:
       "哈尔滨市政府旅游景点页把伏尔加庄园列入热门景点，整体更偏俄式建筑、水岸草地和慢节奏度假感，很适合拿来做第三天。",
     tip: "建议一早出发，把拍照和慢逛时间留足，不然会有点赶。"
@@ -479,6 +487,8 @@ const nearbyPicks = [
   {
     title: "731 陈列馆",
     tag: "Day 3 人文线",
+    image: "/images/pick-731.png",
+    alt: "侵华日军第七三一部队罪证陈列馆景观图",
     detail:
       "侵华日军第七三一部队罪证陈列馆也是哈尔滨官方旅游景点清单中的重要站点，适合更想了解城市近现代历史的人。",
     tip: "这条线情绪会更沉一些，建议和轻松景点分开安排。"
@@ -486,6 +496,8 @@ const nearbyPicks = [
   {
     title: "中华巴洛克历史文化街区",
     tag: "Day 3 人文线",
+    image: "/images/pick-baroque.png",
+    alt: "中华巴洛克历史文化街区景观图",
     detail:
       "哈尔滨市政府 2026 年 2 月 17 日公开报道提到，这里拥有国内建筑规模最大、保留最完整的中华巴洛克建筑群，也是哈尔滨热门打卡地。",
     tip: "如果第三天不想跑近郊，就把它和 731 组合成一条更有故事感的人文线。"
@@ -510,6 +522,18 @@ const dayOnePath = [
   </Fragment>
 
   <main class="page-shell">
+    <header class="top-nav">
+      <a class="top-nav__brand" href="#top">Harbin Stay Guide</a>
+      <nav class="top-nav__links" aria-label="页面导航">
+        <a href="#route">路线</a>
+        <a href="#plan">三日游</a>
+        <a href="#picks">景点</a>
+        <a href="#gallery">相册</a>
+        <a href="#notes">说明</a>
+      </nav>
+      <a class="top-nav__cta" href="#route">开始看攻略</a>
+    </header>
+
     <section class="hero" id="top">
       <div class="hero-copy">
         <p class="eyebrow">Harbin Travel Guide</p>
@@ -613,7 +637,18 @@ const dayOnePath = [
                 <div class="route-card__photos">
                   {spot.photos.map((photo) => (
                     <figure>
-                      <img src={photo.image} alt={photo.alt} loading="lazy" />
+                      <button
+                        type="button"
+                        class="route-card__photo-button"
+                        data-gallery-open
+                        data-image={photo.image}
+                        data-alt={photo.alt}
+                        data-title={spot.title}
+                        data-note={photo.caption}
+                        aria-label={`查看${spot.title}大图`}
+                      >
+                        <img src={photo.image} alt={photo.alt} loading="lazy" />
+                      </button>
                       <figcaption>{photo.caption}</figcaption>
                     </figure>
                   ))}
@@ -662,6 +697,18 @@ const dayOnePath = [
       <div class="picks-grid">
         {nearbyPicks.map((spot) => (
           <article class="pick-card">
+            <button
+              type="button"
+              class="pick-card__image-button"
+              data-gallery-open
+              data-image={spot.image}
+              data-alt={spot.alt}
+              data-title={spot.title}
+              data-note={spot.detail}
+              aria-label={`查看${spot.title}大图`}
+            >
+              <img class="pick-card__image" src={spot.image} alt={spot.alt} loading="lazy" />
+            </button>
             <p class="pick-card__tag">{spot.tag}</p>
             <h3>{spot.title}</h3>
             <p class="pick-card__detail">{spot.detail}</p>
@@ -704,7 +751,7 @@ const dayOnePath = [
       </div>
     </section>
 
-    <section class="section section-notes">
+    <section class="section section-notes" id="notes">
       <div class="section-heading">
         <p>最后补三句</p>
         <h2>这一条路线为什么值得照着走</h2>
@@ -744,7 +791,7 @@ const dayOnePath = [
     <button type="button" class="gallery-lightbox__close" data-gallery-close aria-label="关闭大图">
       关闭
     </button>
-    <div class="gallery-lightbox__content" data-gallery-close>
+    <div class="gallery-lightbox__content">
       <img src="" alt="" data-gallery-lightbox-image />
       <div class="gallery-lightbox__caption">
         <strong data-gallery-lightbox-title></strong>
@@ -758,7 +805,88 @@ const dayOnePath = [
   .page-shell {
     width: var(--content-width);
     margin: 0 auto;
-    padding: 24px 0 56px;
+    padding: 108px 0 72px;
+  }
+
+  .top-nav {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    z-index: 1200;
+    transform: translateX(-50%);
+    width: var(--content-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 10px 30px rgba(34, 34, 34, 0.08);
+    backdrop-filter: blur(16px);
+  }
+
+  .top-nav__brand,
+  .top-nav__links a,
+  .top-nav__cta {
+    text-decoration: none;
+  }
+
+  .top-nav__brand {
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .top-nav__links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .top-nav__links a {
+    padding: 10px 14px;
+    border-radius: 999px;
+    color: var(--muted-soft);
+    font-size: 0.94rem;
+    font-weight: 700;
+    transition:
+      background 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .top-nav__links a:hover,
+  .top-nav__links a:focus-visible {
+    background: var(--surface-soft);
+    color: var(--ink);
+    transform: translateY(-1px);
+  }
+
+  .top-nav__cta {
+    padding: 11px 16px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #ffffff;
+    font-size: 0.92rem;
+    font-weight: 800;
+    white-space: nowrap;
+    transition:
+      background 160ms ease,
+      transform 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .top-nav__cta:hover,
+  .top-nav__cta:focus-visible {
+    background: var(--accent-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(255, 56, 92, 0.22);
   }
 
   .hero,
@@ -766,28 +894,27 @@ const dayOnePath = [
     position: relative;
     overflow: hidden;
     background: var(--surface);
-    border: 1px solid rgba(255, 255, 255, 0.58);
+    border: 1px solid var(--line);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow);
-    backdrop-filter: blur(18px);
   }
 
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
-    gap: 22px;
-    padding: 32px;
+    gap: 28px;
+    padding: 36px;
   }
 
   .hero::after {
     content: "";
     position: absolute;
-    width: 320px;
-    height: 320px;
-    right: -80px;
-    top: -80px;
+    width: 360px;
+    height: 360px;
+    right: -120px;
+    top: -120px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(201, 101, 56, 0.22), transparent 72%);
+    background: radial-gradient(circle, rgba(255, 56, 92, 0.12), transparent 72%);
   }
 
   .eyebrow,
@@ -795,9 +922,9 @@ const dayOnePath = [
   .panel-label {
     margin: 0;
     color: var(--accent);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    font-size: 0.84rem;
+    font-weight: 700;
   }
 
   h1,
@@ -810,8 +937,9 @@ const dayOnePath = [
 
   .hero h1 {
     margin: 14px 0 16px;
-    font-size: clamp(2.55rem, 5vw, 5rem);
-    line-height: 1.03;
+    font-size: clamp(2.7rem, 5vw, 4.85rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
   }
 
   .lead,
@@ -821,7 +949,7 @@ const dayOnePath = [
   .route-card__summary,
   .route-map__header span {
     color: var(--muted);
-    line-height: 1.9;
+    line-height: 1.8;
   }
 
   .lead-soft {
@@ -845,31 +973,47 @@ const dayOnePath = [
   }
 
   .hero-actions a {
-    padding: 12px 16px;
+    padding: 13px 18px;
     border-radius: 999px;
     border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.72);
-    transition: transform 160ms ease, background 160ms ease;
+    background: var(--surface);
+    transition:
+      transform 160ms ease,
+      background 160ms ease,
+      box-shadow 160ms ease,
+      border-color 160ms ease;
+    font-weight: 700;
   }
 
   .hero-actions a:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.96);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-actions a:first-child {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: transparent;
+  }
+
+  .hero-actions a:first-child:hover {
+    background: var(--accent-deep);
+    box-shadow: 0 12px 24px rgba(255, 56, 92, 0.22);
   }
 
   .highlight-list span {
     padding: 10px 14px;
     border-radius: 999px;
-    background: rgba(201, 101, 56, 0.09);
-    color: var(--accent-deep);
-    font-size: 0.95rem;
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 0.94rem;
   }
 
   .hero-panel {
     position: relative;
-    padding: 24px;
+    padding: 26px;
     border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, rgba(255, 247, 236, 0.9), rgba(255, 255, 255, 0.72));
+    background: var(--surface-soft);
     border: 1px solid var(--line);
     z-index: 1;
   }
@@ -889,13 +1033,13 @@ const dayOnePath = [
   }
 
   .hero-panel span {
-    color: var(--muted);
+    color: var(--muted-soft);
     line-height: 1.8;
   }
 
   .section {
-    margin-top: 26px;
-    padding: 28px;
+    margin-top: 30px;
+    padding: 32px;
   }
 
   .section-heading {
@@ -906,7 +1050,8 @@ const dayOnePath = [
 
   .section-heading h2 {
     margin-bottom: 0;
-    font-size: clamp(1.75rem, 3vw, 2.65rem);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    letter-spacing: -0.02em;
   }
 
   .intro-grid,
@@ -927,7 +1072,7 @@ const dayOnePath = [
   .note-card {
     padding: 22px;
     border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.56);
+    background: var(--surface);
     border: 1px solid var(--line);
   }
 
@@ -940,8 +1085,16 @@ const dayOnePath = [
   .day-card {
     padding: 22px;
     border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--surface);
     border: 1px solid var(--line);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .day-card:hover,
+  .pick-card:hover,
+  .note-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
   }
 
   .day-card__head {
@@ -954,8 +1107,8 @@ const dayOnePath = [
     margin: 0;
     color: var(--accent);
     font-size: 0.88rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
   }
 
   .day-card__head h3 {
@@ -966,7 +1119,7 @@ const dayOnePath = [
   .day-card__subtitle,
   .day-card__meta,
   .day-card__schedule {
-    color: var(--muted);
+    color: var(--muted-soft);
     line-height: 1.85;
   }
 
@@ -996,16 +1149,37 @@ const dayOnePath = [
   .pick-card {
     padding: 22px;
     border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--surface);
     border: 1px solid var(--line);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .pick-card__image-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 16px;
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--surface-soft);
+    cursor: zoom-in;
+  }
+
+  .pick-card__image {
+    display: block;
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    object-position: center;
   }
 
   .pick-card__tag {
     margin: 0 0 10px;
-    color: var(--accent);
+    color: var(--muted-soft);
     font-size: 0.84rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-weight: 700;
   }
 
   .pick-card h3 {
@@ -1015,12 +1189,13 @@ const dayOnePath = [
 
   .pick-card__detail,
   .pick-card__tip {
-    color: var(--muted);
+    color: var(--muted-soft);
     line-height: 1.82;
   }
 
   .pick-card__detail {
     margin-bottom: 12px;
+    color: var(--muted);
   }
 
   .pick-card__tip {
@@ -1028,10 +1203,7 @@ const dayOnePath = [
   }
 
   .section-route {
-    background:
-      radial-gradient(circle at top right, rgba(157, 208, 232, 0.16), transparent 26%),
-      radial-gradient(circle at bottom left, rgba(232, 176, 104, 0.12), transparent 24%),
-      var(--surface);
+    background: var(--surface);
   }
 
   .route-explorer {
@@ -1044,26 +1216,26 @@ const dayOnePath = [
   .route-card {
     border-radius: var(--radius-lg);
     border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.58);
+    background: var(--surface);
   }
 
   .route-map {
     position: relative;
     overflow: hidden;
     min-height: 640px;
-    padding: 18px;
+    padding: 20px;
   }
 
   .route-map__header {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     display: grid;
     gap: 6px;
-    max-width: 360px;
-    padding: 16px 18px;
-    border-radius: 18px;
-    background: rgba(255, 252, 247, 0.82);
-    box-shadow: 0 12px 24px rgba(72, 45, 22, 0.08);
+    max-width: 390px;
+    padding: 18px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 10px 28px rgba(34, 34, 34, 0.08);
   }
 
   .route-map__header strong {
@@ -1075,7 +1247,7 @@ const dayOnePath = [
     flex-wrap: wrap;
     gap: 10px 14px;
     margin-top: 4px;
-    color: rgba(81, 57, 40, 0.9);
+    color: var(--muted-soft);
     font-size: 0.84rem;
   }
 
@@ -1117,12 +1289,12 @@ const dayOnePath = [
     position: absolute;
     right: 14px;
     bottom: 12px;
-    z-index: 2;
+    z-index: 1;
     margin: 0;
     padding: 8px 10px;
     border-radius: 999px;
-    background: rgba(255, 252, 247, 0.84);
-    color: rgba(81, 57, 40, 0.9);
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--muted-soft);
     font-size: 0.74rem;
     line-height: 1.4;
   }
@@ -1154,6 +1326,7 @@ const dayOnePath = [
     margin: 0;
     color: var(--accent);
     font-size: 0.92rem;
+    font-weight: 700;
   }
 
   .route-card__head h3 {
@@ -1172,9 +1345,9 @@ const dayOnePath = [
 
   .route-card__content section {
     padding: 16px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.62);
-    border: 1px solid rgba(135, 88, 58, 0.1);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    border: 1px solid rgba(34, 34, 34, 0.05);
   }
 
   .route-card__content h4 {
@@ -1185,7 +1358,7 @@ const dayOnePath = [
   .route-card__content ul {
     margin: 0;
     padding-left: 20px;
-    color: var(--muted);
+    color: var(--muted-soft);
     line-height: 1.82;
   }
 
@@ -1199,9 +1372,18 @@ const dayOnePath = [
   .route-card__photos figure {
     margin: 0;
     overflow: hidden;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(135, 88, 58, 0.1);
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+
+  .route-card__photo-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: zoom-in;
   }
 
   .route-card__photos img {
@@ -1212,7 +1394,7 @@ const dayOnePath = [
 
   .route-card__photos figcaption {
     padding: 12px 14px 14px;
-    color: var(--muted);
+    color: var(--muted-soft);
     line-height: 1.7;
     font-size: 0.92rem;
   }
@@ -1220,10 +1402,10 @@ const dayOnePath = [
   .route-card__empty {
     margin-top: 18px;
     padding: 16px 18px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.62);
-    border: 1px dashed rgba(135, 88, 58, 0.18);
-    color: var(--muted);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    border: 1px dashed var(--line-strong);
+    color: var(--muted-soft);
     line-height: 1.8;
   }
 
@@ -1234,7 +1416,7 @@ const dayOnePath = [
 
   .gallery-carousel__hint {
     margin: 0;
-    color: var(--muted);
+    color: var(--muted-soft);
   }
 
   .gallery-slide__image-button,
@@ -1253,7 +1435,7 @@ const dayOnePath = [
     padding: 4px 4px 14px;
     scroll-snap-type: x mandatory;
     scrollbar-width: thin;
-    scrollbar-color: rgba(140, 56, 34, 0.3) transparent;
+    scrollbar-color: rgba(34, 34, 34, 0.18) transparent;
     cursor: grab;
   }
 
@@ -1262,7 +1444,7 @@ const dayOnePath = [
   }
 
   .gallery-carousel__viewport::-webkit-scrollbar-thumb {
-    background: rgba(140, 56, 34, 0.25);
+    background: rgba(34, 34, 34, 0.18);
     border-radius: 999px;
   }
 
@@ -1270,9 +1452,15 @@ const dayOnePath = [
     scroll-snap-align: start;
     overflow: hidden;
     border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.62);
+    background: var(--surface);
     border: 1px solid var(--line);
     margin: 0;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .gallery-slide:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
   }
 
   .gallery-slide__image-button {
@@ -1282,7 +1470,7 @@ const dayOnePath = [
     width: 100%;
     height: 360px;
     padding: 18px;
-    background: linear-gradient(180deg, rgba(244, 236, 224, 0.8), rgba(240, 228, 214, 0.88));
+    background: var(--surface-soft);
   }
 
   .gallery-slide img {
@@ -1309,13 +1497,13 @@ const dayOnePath = [
   }
 
   .gallery-lightbox {
-    width: min(92vw, 1100px);
-    max-width: 1100px;
-    padding: 18px;
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    padding: 28px;
     border: none;
-    border-radius: 28px;
-    background: rgba(26, 19, 13, 0.84);
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.38);
+    background: rgba(34, 34, 34, 0.76);
+    box-shadow: none;
   }
 
   .gallery-lightbox::backdrop {
@@ -1324,18 +1512,25 @@ const dayOnePath = [
   }
 
   .gallery-lightbox__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 2;
     display: inline-flex;
-    margin-left: auto;
-    margin-bottom: 12px;
     padding: 10px 14px;
     border-radius: 999px;
-    background: rgba(255, 250, 244, 0.92);
+    background: rgba(255, 255, 255, 0.96);
     color: var(--ink);
   }
 
   .gallery-lightbox__content {
+    width: min(92vw, 1100px);
+    margin: 0 auto;
+    min-height: calc(100vh - 56px);
     display: grid;
+    align-content: center;
     gap: 14px;
+    pointer-events: none;
   }
 
   .gallery-lightbox__content img {
@@ -1344,11 +1539,13 @@ const dayOnePath = [
     object-fit: contain;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.08);
+    pointer-events: auto;
   }
 
   .gallery-lightbox__caption {
     padding: 0 6px 4px;
     color: #fff4e8;
+    pointer-events: auto;
   }
 
   .gallery-lightbox__caption strong {
@@ -1364,7 +1561,17 @@ const dayOnePath = [
   }
 
   :global(.leaflet-container) {
-    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+    z-index: 0;
+    font-family:
+      "Nunito",
+      "Inter",
+      "SF Pro Rounded",
+      "SF Pro Display",
+      "PingFang SC",
+      "Hiragino Sans GB",
+      "Microsoft YaHei",
+      system-ui,
+      sans-serif;
   }
 
   :global(.route-leaflet-pin) {
@@ -1443,7 +1650,7 @@ const dayOnePath = [
     justify-content: space-between;
     gap: 16px;
     padding: 18px 8px 0;
-    color: var(--muted);
+    color: var(--muted-soft);
     font-size: 0.94rem;
   }
 
@@ -1472,6 +1679,20 @@ const dayOnePath = [
       grid-template-columns: 1fr;
     }
 
+    .top-nav {
+      gap: 12px;
+      padding: 12px 14px;
+    }
+
+    .top-nav__links {
+      gap: 4px;
+    }
+
+    .top-nav__links a {
+      padding: 9px 10px;
+      font-size: 0.88rem;
+    }
+
     .gallery-carousel__viewport {
       grid-auto-columns: minmax(240px, 48%);
     }
@@ -1480,7 +1701,7 @@ const dayOnePath = [
   @media (max-width: 720px) {
     .page-shell {
       width: min(100vw - 20px, 1180px);
-      padding-top: 12px;
+      padding-top: 138px;
     }
 
     .hero,
@@ -1515,6 +1736,31 @@ const dayOnePath = [
 
     .route-card__photos {
       grid-template-columns: 1fr;
+    }
+
+    .top-nav {
+      top: 10px;
+      width: min(100vw - 20px, 1180px);
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: stretch;
+      border-radius: 24px;
+    }
+
+    .top-nav__brand,
+    .top-nav__cta {
+      text-align: center;
+    }
+
+    .top-nav__links {
+      overflow-x: auto;
+      justify-content: flex-start;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .top-nav__links::-webkit-scrollbar {
+      display: none;
     }
 
     .gallery-carousel__viewport {
@@ -1588,7 +1834,7 @@ const dayOnePath = [
       });
 
       const popupImage = spot.image
-        ? `<img src="${spot.image}" alt="${spot.title}">`
+        ? `<img src="${spot.image}" alt="${spot.title}" data-gallery-open-inline="true" data-image="${spot.image}" data-title="${spot.title}" data-note="${spot.summary}">`
         : "";
 
       const marker = L.marker([spot.lat, spot.lng], { icon })
@@ -1632,6 +1878,14 @@ const dayOnePath = [
   const lightboxImage = lightbox?.querySelector("[data-gallery-lightbox-image]");
   const lightboxTitle = lightbox?.querySelector("[data-gallery-lightbox-title]");
   const lightboxNote = lightbox?.querySelector("[data-gallery-lightbox-note]");
+  const openLightbox = (source, alt, title, note) => {
+    if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxNote) return;
+    lightboxImage.setAttribute("src", source);
+    lightboxImage.setAttribute("alt", alt);
+    lightboxTitle.textContent = title;
+    lightboxNote.textContent = note;
+    lightbox.showModal();
+  };
   let isDragging = false;
   let dragMoved = false;
   let dragStartX = 0;
@@ -1666,30 +1920,41 @@ const dayOnePath = [
   viewport?.addEventListener("pointercancel", stopDragging);
   viewport?.addEventListener("pointerleave", stopDragging);
 
-  carousel?.querySelectorAll("[data-gallery-open]").forEach((button) => {
+  document.querySelectorAll("[data-gallery-open]").forEach((button) => {
     button.addEventListener("click", () => {
       if (dragMoved) {
         dragMoved = false;
         return;
       }
-      if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxNote) return;
       const source = button.getAttribute("data-image") ?? "";
       const alt = button.getAttribute("data-alt") ?? "";
       const title = button.getAttribute("data-title") ?? "";
       const note = button.getAttribute("data-note") ?? "";
-
-      lightboxImage.setAttribute("src", source);
-      lightboxImage.setAttribute("alt", alt);
-      lightboxTitle.textContent = title;
-      lightboxNote.textContent = note;
-      lightbox.showModal();
+      openLightbox(source, alt, title, note);
     });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+
+    const popupImage = target.closest("[data-gallery-open-inline]");
+    if (!(popupImage instanceof HTMLImageElement)) return;
+
+    const source = popupImage.getAttribute("data-image") ?? popupImage.getAttribute("src") ?? "";
+    const alt = popupImage.getAttribute("alt") ?? "";
+    const title = popupImage.getAttribute("data-title") ?? "";
+    const note = popupImage.getAttribute("data-note") ?? "";
+    openLightbox(source, alt, title, note);
   });
 
   lightbox?.addEventListener("click", (event) => {
     const target = event.target;
-    if (!(target instanceof HTMLElement)) return;
-    if (target.matches("[data-gallery-close]")) {
+    if (target === lightbox) {
+      lightbox.close();
+      return;
+    }
+    if (target instanceof HTMLElement && target.matches("[data-gallery-close]")) {
       lightbox.close();
     }
   });
